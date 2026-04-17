@@ -45,11 +45,12 @@ main{flex:1;overflow-y:auto;padding:16px}
 .welcome-banner::before{content:"";position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:var(--terra);opacity:0.18;border-radius:50%}
 .welcome-banner h2{font-size:20px;font-weight:600;margin-bottom:6px}
 .welcome-banner p{font-size:13px;opacity:0.85;line-height:1.5}
-.address-badge{display:inline-block;background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;font-size:11px;margin-top:10px;letter-spacing:0.5px}
+.address-badge{display:inline-block;background:rgba(255,255,255,0.15);border-radius:20px;padding:6px 12px;font-size:11px;margin-top:10px;letter-spacing:0.5px;cursor:pointer;transition:background 0.2s}
+.address-badge:hover{background:rgba(255,255,255,0.25)}
 
 /* WIFI CARD */
 .wifi-code{background:var(--cobalt-light);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;margin-top:8px;cursor:pointer}
-.wifi-code span{font-size:20px;font-weight:700;letter-spacing:2px;color:var(--cobalt)}
+.wifi-code span{font-size:16px;font-weight:700;letter-spacing:1px;color:var(--cobalt)}
 .wifi-copy{background:var(--cobalt);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer}
 .wifi-copy:hover{background:var(--cobalt-dark)}
 
@@ -109,21 +110,19 @@ main{flex:1;overflow-y:auto;padding:16px}
 .faq-q{padding:14px 16px;font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .faq-q i{width:16px;height:16px;color:var(--terra);transition:transform 0.2s;flex-shrink:0}
 .faq-a{padding:0 16px;font-size:13px;color:var(--text-muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s}
-.faq-item.open .faq-a{max-height:200px;padding-bottom:14px}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:14px}
 .faq-item.open .faq-q i{transform:rotate(180deg)}
-
-/* BADGE */
-.tag{display:inline-block;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;margin-right:4px;margin-top:4px}
-.tag.azul{background:var(--cobalt-light);color:var(--cobalt)}
-.tag.terra{background:var(--terra-light);color:var(--terra-dark)}
-
-/* SECTION TITLE */
-.sec-heading{font-size:13px;font-weight:600;color:var(--cobalt);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.sec-heading::after{content:"flex:1;height:1px;background:rgba(0,71,171,0.15)}
 
 /* TOAST */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--cobalt);color:#fff;padding:8px 20px;border-radius:30px;font-size:13px;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none}
 .toast.show{opacity:1}
+
+.sec-heading{font-size:13px;font-weight:600;color:var(--cobalt);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.sec-heading::after{content:"";flex:1;height:1px;background:rgba(0,71,171,0.15)}
+
+.tag{display:inline-block;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;margin-right:4px;margin-top:4px}
+.tag.azul{background:var(--cobalt-light);color:var(--cobalt)}
+.tag.terra{background:var(--terra-light);color:var(--terra-dark)}
 </style>
 </head>
 <body>
@@ -159,8 +158,8 @@ main{flex:1;overflow-y:auto;padding:16px}
 <div class="section active" id="bienvenida">
   <div class="welcome-banner">
     <h2 data-i="welcome_title">¡Bienvenido a La Casa de mi Abuelo!</h2>
-    <p data-i="welcome_sub">Nelly está feliz de tenerlos en casa. Aquí encontrarás todo lo que necesitas para tu estancia.</p>
-    <div class="address-badge">📍 Benito Juárez 61, Coyoacán, CDMX</div>
+    <p data-i="welcome_sub">Nelly y Marcelo están felices de recibirte. Aquí encontrarás todo lo que necesitas para tu estancia.</p>
+    <div class="address-badge" onclick="openMaps('Benito Juárez 61, Del Carmen, Coyoacán, CDMX')">📍 Benito Juárez 61, Coyoacán</div>
   </div>
 
   <div class="sec-heading" data-i="quick_access">Acceso rápido</div>
@@ -187,82 +186,69 @@ main{flex:1;overflow-y:auto;padding:16px}
     <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Wi-Fi Principal</span></div>
     <div class="info-row">
       <i data-lucide="signal"></i>
-      <div><div class="info-label" data-i="wifi_network">Red</div><div class="info-val">CasaCoyoacan_5G</div></div>
+      <div><div class="info-label" data-i="wifi_network">Red</div><div class="info-val">IZZI-ACAE</div></div>
     </div>
-    <div class="wifi-code" onclick="copyWifi()">
-      <span>talavera24</span>
+    <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')">
+      <span>D4AB820FACAE</span>
       <button class="wifi-copy" data-i="copy_btn">Copiar</button>
     </div>
-    <p style="font-size:11px;color:var(--text-muted);margin-top:8px" data-i="wifi_note">También hay red 2.4G para dispositivos más antiguos: CasaCoyoacan_2G / misma contraseña</p>
   </div>
 
   <div class="card">
     <div class="card-title"><i data-lucide="calendar-check"></i><span>Check-in / Check-out</span></div>
     <div class="info-row">
       <i data-lucide="log-in"></i>
-      <div><div class="info-label" data-i="checkin_label">Check-in</div><div class="info-val" data-i="checkin_time">3:00 PM en adelante</div></div>
+      <div><div class="info-label" data-i="checkin_label">Check-in</div><div class="info-val" data-i="checkin_time">1:00 PM en adelante</div></div>
     </div>
     <div class="info-row">
       <i data-lucide="log-out"></i>
-      <div><div class="info-label" data-i="checkout_label">Check-out</div><div class="info-val" data-i="checkout_time">12:00 PM (mediodía)</div></div>
+      <div><div class="info-label" data-i="checkout_label">Check-out</div><div class="info-val" data-i="checkout_time">Antes de las 1:00 PM</div></div>
     </div>
   </div>
 </div>
 
 <div class="section" id="manual">
   <div class="card">
-    <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Wi-Fi</span></div>
+    <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Conexión Wi-Fi</span></div>
     <div class="info-row">
       <i data-lucide="radio"></i>
-      <div><div class="info-label">Red 5G</div><div class="info-val">CasaCoyoacan_5G</div></div>
+      <div><div class="info-label">Red Principal (IZZI)</div><div class="info-val">IZZI-ACAE</div></div>
     </div>
-    <div class="wifi-code" onclick="copyWifi()">
-      <span>talavera24</span>
+    <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')">
+      <span>D4AB820FACAE</span>
       <button class="wifi-copy" data-i="copy_btn">Copiar</button>
     </div>
-    <div style="height:10px"></div>
+    <div style="height:14px"></div>
     <div class="info-row">
       <i data-lucide="radio"></i>
-      <div><div class="info-label">Red 2.4G</div><div class="info-val">CasaCoyoacan_2G</div></div>
+      <div><div class="info-label">Red Secundaria (Infinitum)</div><div class="info-val">INFINITUM3565_2.4</div></div>
     </div>
-    <div class="wifi-code" onclick="copyWifi('talavera24')">
-      <span>talavera24</span>
+    <div class="wifi-code" onclick="copyWifi('meySt7Mb9g')">
+      <span>meySt7Mb9g</span>
       <button class="wifi-copy" data-i="copy_btn">Copiar</button>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title"><i data-lucide="log-in"></i><span data-i="checkin_section">Entrada y Salida</span></div>
-    <div class="sec-heading" style="margin-top:4px">Check-in</div>
-    <div class="step"><div class="step-num">1</div><div class="step-text" data-i="ci1">Recoge la llave en la caja de seguridad junto a la puerta principal. El código te fue enviado por mensaje.</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text" data-i="ci2">Ingresa y deja la puerta asegurada en todo momento.</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-text" data-i="ci3">Si tienes algún problema al ingresar, llama a Marcelo: 55-1234-5678.</div></div>
-    <div class="sec-heading" style="margin-top:14px">Check-out</div>
-    <div class="step"><div class="step-num">1</div><div class="step-text" data-i="co1">Deposita la llave en la caja de seguridad y ciérrala.</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text" data-i="co2">Deja los platos lavados y la basura separada en sus contenedores.</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-text" data-i="co3">Apaga luces, aire acondicionado y cierra todas las ventanas.</div></div>
+    <div class="card-title"><i data-lucide="scroll-text"></i><span data-i="rules_title">Reglas de la Casa</span></div>
+    <div class="step"><div class="step-num">🚭</div><div class="step-text" data-i="rule_smoke">NO FUMAR dentro del departamento.</div></div>
+    <div class="step"><div class="step-num">🐾</div><div class="step-text" data-i="rule_pets">No se permiten mascotas sin autorización previa.</div></div>
+    <div class="step"><div class="step-num">🤫</div><div class="step-text" data-i="rule_noise">Respetar al vecindario, mantener volumen bajo por la noche.</div></div>
+    <div class="step"><div class="step-num">🚫</div><div class="step-text" data-i="rule_party">No hacer fiestas ni eventos sin consentimiento.</div></div>
+    <div class="step"><div class="step-num">🏠</div><div class="step-text" data-i="rule_clean">Dejar el lugar en las mismas condiciones en que se encontró.</div></div>
   </div>
 
   <div class="card">
-    <div class="card-title"><i data-lucide="flame"></i><span data-i="water_heater">Calentador de Agua</span></div>
-    <div class="step"><div class="step-num">1</div><div class="step-text" data-i="wh1">Enciende el calentador 10 minutos antes de bañarte (botón rojo en la pared de la azotea).</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text" data-i="wh2">El agua tarda en llegar. Paciencia de 2–3 minutos una vez abierta la llave.</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-text" data-i="wh3">Apágalo al terminar para ahorrar gas.</div></div>
+    <div class="card-title"><i data-lucide="trash-2"></i><span data-i="trash_title">Basura y Limpieza</span></div>
+    <div class="info-row"><i data-lucide="recycle"></i><div><div class="info-label" data-i="trash_label">Recolección</div><div class="info-val" data-i="trash_days">Miércoles a Domingo · 8:00 AM</div></div></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px" data-i="trash_note">Saca los botes a la entrada si requieres recolección.</p>
+    <div style="height:10px; border-bottom:1px solid var(--border); margin-bottom:10px"></div>
+    <div class="info-row"><i data-lucide="sparkles"></i><div><div class="info-label" data-i="clean_label">Limpieza Adicional</div><div class="info-val" data-i="clean_cost">$500 MXN (Sujeto a disponibilidad)</div></div></div>
   </div>
 
   <div class="card">
-    <div class="card-title"><i data-lucide="trash-2"></i><span data-i="trash_title">Basura</span></div>
-    <div class="info-row"><i data-lucide="recycle"></i><div><div class="info-label" data-i="trash_organic">Orgánicos</div><div class="info-val" data-i="trash_organic_day">Lunes y Jueves · 8–9 AM</div></div></div>
-    <div class="info-row"><i data-lucide="archive"></i><div><div class="info-label" data-i="trash_inorganic">Inorgánicos</div><div class="info-val" data-i="trash_inorganic_day">Miércoles · 8–9 AM</div></div></div>
-    <p style="font-size:12px;color:var(--text-muted);margin-top:8px" data-i="trash_note">El camión pasa por Benito Juárez. Deja las bolsas frente al portón.</p>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><i data-lucide="scroll-text"></i><span data-i="rules_title">Reglas de Convivencia</span></div>
-    <div class="step"><div class="step-num">•</div><div class="step-text" data-i="rule1">Silencio después de las 11 PM. Los vecinos de Coyoacán son maravillosos; cuidémoslos.</div></div>
-    <div class="step"><div class="step-num">•</div><div class="step-text" data-i="rule2">No se permiten mascotas sin autorización previa.</div></div>
-    <div class="step"><div class="step-num">•</div><div class="step-text" data-i="rule3">No se permiten fiestas o eventos sin acuerdo con los anfitriones.</div></div>
-    <div class="step"><div class="step-num">•</div><div class="step-text" data-i="rule4">Capacidad máxima: personas registradas en la reserva.</div></div>
+    <div class="card-title"><i data-lucide="sun"></i><span>Roof Garden</span></div>
+    <div class="step"><div class="step-num">✓</div><div class="step-text" data-i="roof_info">Cuentas con acceso a un Roof Garden. Avisa a tu anfitriona para colocar el mobiliario correspondiente.</div></div>
   </div>
 </div>
 
@@ -278,10 +264,9 @@ main{flex:1;overflow-y:auto;padding:16px}
       <span class="tag azul" data-i="poi_museum">Museo</span>
       <span class="tag terra" data-i="poi_iconic">Icónico</span>
       <div class="poi-host-tip" data-i="poi1_tip">💬 "Compra tu entrada en línea con días de anticipación. Los fines de semana se agotan rapidísimo."</div>
-      <div class="poi-desc" data-i="poi1_desc">La casa donde nació y vivió Frida Kahlo, convertida en museo. Pintada de azul cobalto, alberga sus obras, ropa, joyas y el estudio donde pintó sus obras más íntimas.</div>
+      <div class="poi-desc" data-i="poi1_desc">La casa donde nació y vivió Frida Kahlo, convertida en museo. Pintada de azul cobalto, alberga sus obras, ropa y estudio íntimo.</div>
       <div class="poi-meta">
-        <span><i data-lucide="clock"></i><span data-i="poi1_hours">Mar–Dom 10–17:30h. Cerrado lunes.</span></span>
-        <span><i data-lucide="ticket"></i>$270–$320 MXN</span>
+        <span><i data-lucide="clock"></i><span data-i="poi1_hours">Mar–Dom 10–17:30h.</span></span>
       </div>
       <button class="maps-btn" onclick="openMaps('Museo Frida Kahlo, Coyoacan, CDMX')">
         <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
@@ -295,65 +280,12 @@ main{flex:1;overflow-y:auto;padding:16px}
       <div class="poi-name" data-i="poi2_name">Tía Berta — Chilaquiles Legendarios</div>
       <span class="tag terra" data-i="poi_food">Comida</span>
       <span class="tag azul" data-i="poi_local">Local</span>
-      <div class="poi-host-tip" data-i="poi2_tip">💬 "El secreto de Marcelo: llega antes de las 9 AM. Pide los chilaquiles verdes con pollo y un agua de Jamaica."</div>
-      <div class="poi-desc" data-i="poi2_desc">Un clásico de Coyoacán desde hace décadas. Desayunos caseros en un ambiente de barrio auténtico. Los chilaquiles aquí son referencia obligada para cualquier visitante.</div>
+      <div class="poi-host-tip" data-i="poi2_tip">💬 "El secreto de Marcelo: llega antes de las 9 AM. Pide los chilaquiles verdes con pollo."</div>
+      <div class="poi-desc" data-i="poi2_desc">Un clásico de Coyoacán. Desayunos caseros en un ambiente auténtico. Los chilaquiles son referencia obligada.</div>
       <div class="poi-meta">
         <span><i data-lucide="clock"></i><span data-i="poi2_hours">Lun–Sáb 8–13h</span></span>
-        <span><i data-lucide="banknote"></i>$80–$150 MXN</span>
       </div>
       <button class="maps-btn" onclick="openMaps('Restaurante Tía Berta, Coyoacan, CDMX')">
-        <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="poi-card">
-    <div class="poi-img" style="background:#E8F8F0;font-size:60px;text-align:center;line-height:130px">🌳</div>
-    <div class="poi-body">
-      <div class="poi-name" data-i="poi3_name">Jardín Centenario y Plaza Hidalgo</div>
-      <span class="tag azul" data-i="poi_plaza">Plaza</span>
-      <div class="poi-host-tip" data-i="poi3_tip">💬 "Los domingos hay artesanos, música en vivo y los mejores tostadas de la plaza. ¡No te los pierdas!"</div>
-      <div class="poi-desc" data-i="poi3_desc">El corazón de Coyoacán. Rodeado de cafés, mercados de artesanías y la icónica fuente con coyotes. El lugar perfecto para perderse una tarde viendo pasar la vida.</div>
-      <div class="poi-meta">
-        <span><i data-lucide="clock"></i><span data-i="poi3_hours">Siempre abierto</span></span>
-        <span><i data-lucide="banknote"></i>Gratis</span>
-      </div>
-      <button class="maps-btn" onclick="openMaps('Jardín Centenario, Coyoacán, CDMX')">
-        <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="poi-card">
-    <div class="poi-img" style="background:#FAF0EE;font-size:60px;text-align:center;line-height:130px">🌮</div>
-    <div class="poi-body">
-      <div class="poi-name" data-i="poi4_name">Mercado de Coyoacán</div>
-      <span class="tag terra" data-i="poi_food">Comida</span>
-      <span class="tag azul" data-i="poi_market">Mercado</span>
-      <div class="poi-host-tip" data-i="poi4_tip">💬 "El puesto de tostadas de la señora Rosario (entrada sur) es el favorito de Nelly. Lleva efectivo."</div>
-      <div class="poi-desc" data-i="poi4_desc">Mercado tradicional con una sección de comida que es pura magia. Tostadas, tlacopos, aguas frescas y dulces típicos en un ambiente auténtico de barrio.</div>
-      <div class="poi-meta">
-        <span><i data-lucide="clock"></i><span data-i="poi4_hours">Todos los días 9–18h</span></span>
-        <span><i data-lucide="banknote"></i>$50–$120 MXN</span>
-      </div>
-      <button class="maps-btn" onclick="openMaps('Mercado de Coyoacán, CDMX')">
-        <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="poi-card">
-    <div class="poi-img" style="background:#E8EEFA;font-size:60px;text-align:center;line-height:130px">📚</div>
-    <div class="poi-body">
-      <div class="poi-name" data-i="poi5_name">El Parnaso — Café y Librería</div>
-      <span class="tag azul" data-i="poi_cafe">Café</span>
-      <div class="poi-host-tip" data-i="poi5_tip">💬 "El mejor lugar para una tarde de lectura. Pide el café de olla y el pastel de elote."</div>
-      <div class="poi-desc" data-i="poi5_desc">Una librería-café legendaria frente al Jardín Centenario. Rincón favorito de escritores y artistas. La atmósfera es exactamente lo que imaginas cuando piensas en Coyoacán.</div>
-      <div class="poi-meta">
-        <span><i data-lucide="clock"></i><span data-i="poi5_hours">Lun–Dom 9–21h</span></span>
-        <span><i data-lucide="banknote"></i>$80–$180 MXN</span>
-      </div>
-      <button class="maps-btn" onclick="openMaps('Librería El Parnaso, Coyoacán, CDMX')">
         <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
       </button>
     </div>
@@ -370,37 +302,15 @@ main{flex:1;overflow-y:auto;padding:16px}
   <div class="sec-heading" data-i="emerg_host">Anfitriones</div>
   <div class="emergency-card ok">
     <div class="emerg-icon blue"><i data-lucide="user"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Marcelo</div><div class="emerg-num">55-1234-5678</div></div>
-    <button class="call-btn" onclick="callNumber('5512345678')">Llamar</button>
-  </div>
-  <div class="emergency-card ok">
-    <div class="emerg-icon blue"><i data-lucide="user"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Nelly</div><div class="emerg-num">55-8765-4321</div></div>
-    <button class="call-btn" onclick="callNumber('5587654321')">Llamar</button>
-  </div>
-
-  <div class="sec-heading" data-i="emerg_hospitals">Hospitales Cercanos</div>
-  <div class="emergency-card warn">
-    <div class="emerg-icon red"><i data-lucide="cross"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Hospital Ángeles Pedregal</div><div class="emerg-num" data-i="hosp_dist1">8 min en auto · Camino a Santa Teresa 1055</div></div>
-    <button class="call-btn red-btn" onclick="openMaps('Hospital Angeles Pedregal, CDMX')">Mapa</button>
-  </div>
-  <div class="emergency-card warn">
-    <div class="emerg-icon red"><i data-lucide="cross"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Hospital General de México</div><div class="emerg-num" data-i="hosp_dist2">15 min en auto · Dr. Balmis 148</div></div>
-    <button class="call-btn red-btn" onclick="openMaps('Hospital General de Mexico, CDMX')">Mapa</button>
+    <div class="emerg-info"><div class="emerg-name">Nelly</div><div class="emerg-num">55 6116 1944</div></div>
+    <button class="call-btn" onclick="callNumber('5561161944')">Llamar</button>
   </div>
 
   <div class="sec-heading" data-i="emerg_pharma">Farmacias 24h</div>
   <div class="emergency-card ok">
     <div class="emerg-icon green"><i data-lucide="pill"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Farmacias del Ahorro</div><div class="emerg-num" data-i="pharma1">Miguel Ángel de Quevedo 687 · 3 min caminando</div></div>
+    <div class="emerg-info"><div class="emerg-name">Farmacias del Ahorro</div><div class="emerg-num">M.Á. de Quevedo 687 · 3 min caminando</div></div>
     <button class="call-btn" onclick="openMaps('Farmacia del Ahorro Coyoacan')">Mapa</button>
-  </div>
-  <div class="emergency-card ok">
-    <div class="emerg-icon green"><i data-lucide="pill"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Farmacias Guadalajara</div><div class="emerg-num" data-i="pharma2">Av. México-Coyoacán 31 · 7 min caminando</div></div>
-    <button class="call-btn" onclick="openMaps('Farmacias Guadalajara Coyoacan CDMX')">Mapa</button>
   </div>
 </div>
 
@@ -418,116 +328,53 @@ const T = {
     nav_welcome:"Inicio",nav_manual:"Manual",nav_guide:"Guía",nav_emergency:"Emergencias",nav_faq:"FAQ",
     welcome_title:"¡Bienvenido a La Casa de mi Abuelo!",
     welcome_sub:"Nelly y Marcelo están felices de recibirte. Aquí encontrarás todo lo que necesitas para tu estancia.",
-    quick_access:"Acceso rápido",btn_wifi:"Wi-Fi",btn_how:"Cómo llegar",btn_emergency:"Emergencias",btn_faq:"FAQ",
+    quick_access:"Acceso rápido",btn_wifi:"Wi-Fi",btn_how:"Regresar a Casa",btn_emergency:"Emergencias",btn_faq:"FAQ",
     wifi_title:"Wi-Fi Principal",wifi_network:"Red",copy_btn:"Copiar",
-    wifi_note:"También hay red 2.4G para dispositivos más antiguos: CasaCoyoacan_2G / misma contraseña",
-    checkin_label:"Check-in",checkin_time:"3:00 PM en adelante",checkout_label:"Check-out",checkout_time:"12:00 PM (mediodía)",
-    checkin_section:"Entrada y Salida",
-    ci1:"Recoge la llave en la caja de seguridad junto a la puerta principal. El código te fue enviado por mensaje.",
-    ci2:"Ingresa y deja la puerta asegurada en todo momento.",
-    ci3:"Si tienes algún problema al ingresar, llama a Marcelo: 55-1234-5678.",
-    co1:"Deposita la llave en la caja de seguridad y ciérrala.",
-    co2:"Deja los platos lavados y la basura separada en sus contenedores.",
-    co3:"Apaga luces, aire acondicionado y cierra todas las ventanas.",
-    water_heater:"Calentador de Agua",
-    wh1:"Enciende el calentador 10 min antes de bañarte (botón rojo en la azotea).",
-    wh2:"El agua tarda en llegar. Espera 2–3 minutos con la llave abierta.",
-    wh3:"Apágalo al terminar para ahorrar gas.",
-    trash_title:"Basura",trash_organic:"Orgánicos",trash_organic_day:"Lunes y Jueves · 8–9 AM",
-    trash_inorganic:"Inorgánicos",trash_inorganic_day:"Miércoles · 8–9 AM",
-    trash_note:"El camión pasa por Benito Juárez. Deja las bolsas frente al portón.",
-    rules_title:"Reglas de Convivencia",
-    rule1:"Silencio después de las 11 PM. Los vecinos de Coyoacán son maravillosos; cuidémoslos.",
-    rule2:"No se permiten mascotas sin autorización previa.",
-    rule3:"No se permiten fiestas o eventos sin acuerdo con los anfitriones.",
-    rule4:"Capacidad máxima: personas registradas en la reserva.",
+    checkin_label:"Check-in",checkin_time:"1:00 PM en adelante",checkout_label:"Check-out",checkout_time:"Antes de las 1:00 PM",
+    rules_title:"Reglas de la Casa",
+    rule_smoke:"NO FUMAR dentro del departamento.",
+    rule_pets:"No se permiten mascotas sin autorización previa.",
+    rule_noise:"Respetar al vecindario, mantener volumen bajo por la noche.",
+    rule_party:"No hacer fiestas ni eventos sin consentimiento.",
+    rule_clean:"Dejar el lugar en las mismas condiciones en que se encontró.",
+    trash_title:"Basura y Limpieza",trash_label:"Recolección",trash_days:"Miércoles a Domingo · 8:00 AM",
+    trash_note:"Saca los botes a la entrada si requieres recolección.",
+    clean_label:"Limpieza Adicional",clean_cost:"$500 MXN",
     guide_intro:"Una selección curada por Nelly y Marcelo. Lugares que conocen y aman.",
-    poi_museum:"Museo",poi_iconic:"Icónico",poi_food:"Comida",poi_local:"Local",poi_plaza:"Plaza",poi_market:"Mercado",poi_cafe:"Café",
-    poi1_name:"Museo Frida Kahlo (Casa Azul)",poi1_tip:'💬 "Compra tu entrada en línea con días de anticipación. Los fines de semana se agotan rapidísimo."',
-    poi1_desc:"La casa donde nació y vivió Frida Kahlo, convertida en museo. Pintada de azul cobalto, alberga sus obras, ropa, joyas y el estudio donde pintó sus obras más íntimas.",
-    poi1_hours:"Mar–Dom 10–17:30h. Cerrado lunes.",
-    poi2_name:"Tía Berta — Chilaquiles Legendarios",poi2_tip:'💬 "El secreto de Marcelo: llega antes de las 9 AM. Pide los chilaquiles verdes con pollo y un agua de Jamaica."',
-    poi2_desc:"Un clásico de Coyoacán desde hace décadas. Desayunos caseros en un ambiente de barrio auténtico. Los chilaquiles aquí son referencia obligada.",
-    poi2_hours:"Lun–Sáb 8–13h",
-    poi3_name:"Jardín Centenario y Plaza Hidalgo",poi3_tip:'💬 "Los domingos hay artesanos, música en vivo y los mejores tostadas de la plaza."',
-    poi3_desc:"El corazón de Coyoacán. Rodeado de cafés, mercados de artesanías y la icónica fuente con coyotes. El lugar perfecto para perderse una tarde.",
-    poi3_hours:"Siempre abierto",
-    poi4_name:"Mercado de Coyoacán",poi4_tip:'💬 "El puesto de tostadas de la señora Rosario (entrada sur) es el favorito de Nelly. Lleva efectivo."',
-    poi4_desc:"Mercado tradicional con una sección de comida que es pura magia. Tostadas, tlacopos, aguas frescas y dulces típicos en ambiente auténtico.",
-    poi4_hours:"Todos los días 9–18h",
-    poi5_name:"El Parnaso — Café y Librería",poi5_tip:'💬 "El mejor lugar para una tarde de lectura. Pide el café de olla y el pastel de elote."',
-    poi5_desc:"Una librería-café legendaria frente al Jardín Centenario. Rincón favorito de escritores y artistas de Coyoacán.",
-    poi5_hours:"Lun–Dom 9–21h",
     how_to_get:"Cómo llegar",
     emerg_main:"Emergencia General",emerg_911:"Policía · Bomberos · Ambulancia",
-    emerg_host:"Anfitriones",emerg_hospitals:"Hospitales Cercanos",emerg_pharma:"Farmacias 24h",
-    hosp_dist1:"8 min en auto · Camino a Santa Teresa 1055",hosp_dist2:"15 min en auto · Dr. Balmis 148",
-    pharma1:"Miguel Ángel de Quevedo 687 · 3 min caminando",pharma2:"Av. México-Coyoacán 31 · 7 min caminando",
+    emerg_host:"Anfitriones",emerg_pharma:"Farmacias 24h",
     faq:[
-      {q:"¿Hay estacionamiento disponible?",a:"No contamos con estacionamiento propio, pero hay varios en la calle Benito Juárez y en Plaza Coyoacán. El costo es aprox. $50 MXN por hora."},
-      {q:"¿Puedo recibir visitas?",a:"Sí, pero las visitas no pueden pernoctar. Cualquier excepción debe acordarse con los anfitriones previamente."},
-      {q:"¿Dónde tirar la basura?",a:"Dentro de la cocina hay cubos separados: orgánico (verde) e inorgánico (gris). El camión pasa lunes/jueves para orgánicos y miércoles para inorgánicos."},
-      {q:"¿Hay servicio de limpieza?",a:"La limpieza se hace entre huéspedes. Si necesitas servicio durante tu estancia, contáctanos con 24h de anticipación (costo adicional)."},
-      {q:"¿Cómo funciona el calentador?",a:"El botón rojo está en la azotea. Enciéndelo 10 min antes de bañarte y apágalo al terminar. Si tienes dudas, escríbele a Marcelo."},
-      {q:"¿Hay transporte público cerca?",a:"Sí. La estación de Metro Viveros-Derechos Humanos está a 10 min caminando. También pasan camiones por Av. México-Coyoacán."},
+      {q:"¿Cómo funciona el calentador?",a:"Se recomienda encenderlo 10 min antes de bañarse. El agua caliente tarda 2-3 min en llegar una vez abierta la llave."},
+      {q:"¿Puedo usar el Roof Garden?",a:"Sí, el departamento tiene acceso. Solo avisa a Nelly para que se coloque el mobiliario."},
+      {q:"¿Qué incluye el inventario?",a:"El departamento está totalmente equipado: refrigerador, estufa, microondas, cafetera, utensilios de cocina completos para 3 personas, blancos y artículos de higiene personal."},
+      {q:"¿Hay estacionamiento?",a:"No contamos con estacionamiento propio, pero hay opciones públicas seguras en las calles aledañas."},
     ]
   },
   en:{
     nav_welcome:"Home",nav_manual:"Manual",nav_guide:"Guide",nav_emergency:"Emergency",nav_faq:"FAQ",
     welcome_title:"Welcome to La Casa de mi Abuelo!",
-    welcome_sub:"Nelly and Marcelo are happy to have you. Here you'll find everything you need for your stay.",
-    quick_access:"Quick Access",btn_wifi:"Wi-Fi",btn_how:"Directions",btn_emergency:"Emergency",btn_faq:"FAQ",
+    welcome_sub:"Nelly and Marcelo are happy to have you. Here is everything you need.",
+    quick_access:"Quick Access",btn_wifi:"Wi-Fi",btn_how:"Back to Home",btn_emergency:"Emergency",btn_faq:"FAQ",
     wifi_title:"Main Wi-Fi",wifi_network:"Network",copy_btn:"Copy",
-    wifi_note:"There's also a 2.4G network for older devices: CasaCoyoacan_2G / same password",
-    checkin_label:"Check-in",checkin_time:"3:00 PM onwards",checkout_label:"Check-out",checkout_time:"12:00 PM (noon)",
-    checkin_section:"Arrival & Departure",
-    ci1:"Pick up the key from the lockbox next to the main door. The code was sent to you by message.",
-    ci2:"Enter and keep the door locked at all times.",
-    ci3:"If you have trouble getting in, call Marcelo: 55-1234-5678.",
-    co1:"Return the key to the lockbox and close it.",
-    co2:"Leave dishes washed and trash sorted in the proper bins.",
-    co3:"Turn off lights, A/C and close all windows.",
-    water_heater:"Water Heater",
-    wh1:"Turn on the water heater 10 min before showering (red button on the rooftop).",
-    wh2:"Water takes time to arrive. Wait 2–3 minutes after opening the tap.",
-    wh3:"Turn it off when done to save gas.",
-    trash_title:"Trash & Recycling",trash_organic:"Organic",trash_organic_day:"Mon & Thu · 8–9 AM",
-    trash_inorganic:"Inorganic",trash_inorganic_day:"Wednesday · 8–9 AM",
-    trash_note:"The truck passes along Benito Juárez. Leave bags in front of the main gate.",
+    checkin_label:"Check-in",checkin_time:"1:00 PM onwards",checkout_label:"Check-out",checkout_time:"Before 1:00 PM",
     rules_title:"House Rules",
-    rule1:"Quiet hours after 11 PM. Coyoacán neighbors are wonderful — let's keep it that way.",
-    rule2:"No pets allowed without prior authorization.",
-    rule3:"No parties or events without agreement with hosts.",
-    rule4:"Maximum capacity: guests registered in the reservation.",
-    guide_intro:"A curated selection by Nelly and Marcelo — places they know and love.",
-    poi_museum:"Museum",poi_iconic:"Iconic",poi_food:"Food",poi_local:"Local",poi_plaza:"Park",poi_market:"Market",poi_cafe:"Café",
-    poi1_name:"Frida Kahlo Museum (Casa Azul)",poi1_tip:'💬 "Buy tickets online days in advance. Weekends sell out super fast."',
-    poi1_desc:"The house where Frida Kahlo was born and lived, turned into a museum. Painted cobalt blue, it holds her artworks, clothes, jewelry and the studio where she painted her most intimate works.",
-    poi1_hours:"Tue–Sun 10–17:30. Closed Mondays.",
-    poi2_name:"Tía Berta — Legendary Chilaquiles",poi2_tip:'💬 "Marcelo\'s secret: arrive before 9 AM. Order the green chilaquiles with chicken and a agua de Jamaica."',
-    poi2_desc:"A Coyoacán classic for decades. Homestyle breakfasts in an authentic neighborhood setting. The chilaquiles here are a must for any visitor.",
-    poi2_hours:"Mon–Sat 8AM–1PM",
-    poi3_name:"Jardín Centenario & Plaza Hidalgo",poi3_tip:'💬 "On Sundays there are artisans, live music and the best tostadas in the square!"',
-    poi3_desc:"The heart of Coyoacán. Surrounded by cafés, craft markets and the iconic coyote fountain. The perfect place to spend an afternoon watching life go by.",
-    poi3_hours:"Always open",
-    poi4_name:"Mercado de Coyoacán",poi4_tip:'💬 "Mrs. Rosario\'s tostada stand (south entrance) is Nelly\'s favorite. Bring cash."',
-    poi4_desc:"A traditional market with a food section that is pure magic. Tostadas, tlacopos, fresh waters and traditional sweets in an authentic neighborhood setting.",
-    poi4_hours:"Every day 9AM–6PM",
-    poi5_name:"El Parnaso — Café & Bookshop",poi5_tip:'💬 "The best place for a reading afternoon. Try the café de olla and the elote cake."',
-    poi5_desc:"A legendary café-bookshop facing Jardín Centenario. Favorite haunt of Coyoacán writers and artists.",
-    poi5_hours:"Mon–Sun 9AM–9PM",
+    rule_smoke:"NO SMOKING inside the apartment.",
+    rule_pets:"No pets allowed without prior authorization.",
+    rule_noise:"Respect the neighborhood, keep volume low at night.",
+    rule_party:"No parties or events allowed.",
+    rule_clean:"Leave the place in the same condition as found.",
+    trash_title:"Trash & Cleaning",trash_label:"Collection",trash_days:"Wed to Sun · 8:00 AM",
+    trash_note:"Put the bins at the entrance if collection is required.",
+    clean_label:"Extra Cleaning",clean_cost:"$500 MXN",
+    guide_intro:"A selection curated by Nelly and Marcelo.",
     how_to_get:"Get Directions",
     emerg_main:"General Emergency",emerg_911:"Police · Fire · Ambulance",
-    emerg_host:"Hosts",emerg_hospitals:"Nearby Hospitals",emerg_pharma:"24h Pharmacies",
-    hosp_dist1:"8 min by car · Camino a Santa Teresa 1055",hosp_dist2:"15 min by car · Dr. Balmis 148",
-    pharma1:"Miguel Ángel de Quevedo 687 · 3 min walk",pharma2:"Av. México-Coyoacán 31 · 7 min walk",
+    emerg_host:"Hosts",emerg_pharma:"24h Pharmacies",
     faq:[
-      {q:"Is parking available?",a:"We don't have private parking, but there are several lots on Benito Juárez and at Plaza Coyoacán. Cost is approx. $50 MXN/hour."},
-      {q:"Can I have visitors?",a:"Yes, but visitors cannot stay overnight. Any exception must be agreed with hosts in advance."},
-      {q:"Where do I put the trash?",a:"There are separate bins in the kitchen: organic (green) and inorganic (gray). The truck collects Mon/Thu for organic and Wednesday for inorganic."},
-      {q:"Is there a cleaning service?",a:"Cleaning is done between guests. If you need service during your stay, contact us 24h in advance (additional cost)."},
-      {q:"How does the water heater work?",a:"The red button is on the rooftop. Turn it on 10 min before showering and off when done. Any questions, message Marcelo."},
-      {q:"Is there public transport nearby?",a:"Yes. Viveros-Derechos Humanos Metro station is 10 min walking. Buses also run along Av. México-Coyoacán."},
+      {q:"How does the water heater work?",a:"Turn it on 10 min before showering. Hot water takes 2-3 min to arrive after opening the tap."},
+      {q:"Can I use the Roof Garden?",a:"Yes, you have access. Please notify Nelly to set up the outdoor furniture."},
+      {q:"What is included in the inventory?",a:"Fully equipped: fridge, stove, microwave, coffee maker, full kitchen utensils for 3, linens, and personal hygiene items."},
     ]
   }
 };
@@ -558,10 +405,9 @@ function showSection(id, btn){
 }
 
 function copyWifi(pw){
-  const p = pw||'talavera24';
-  navigator.clipboard&&navigator.clipboard.writeText(p).catch(()=>{});
+  navigator.clipboard.writeText(pw).catch(()=>{});
   const t=document.getElementById('toast');
-  t.textContent = lang==='es'?'✓ Contraseña copiada':'✓ Password copied';
+  t.textContent = lang==='es'?'✓ Copiado':'✓ Copied';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2000);
 }
@@ -593,7 +439,6 @@ function toggleFaq(el){
 
 window.addEventListener('load',()=>{
   if(typeof lucide!=='undefined'){lucide.createIcons();buildFAQ();}
-  else{setTimeout(()=>{if(typeof lucide!=='undefined'){lucide.createIcons();buildFAQ();}},500);}
 });
 </script>
 </body>
