@@ -64,18 +64,6 @@ main{flex:1;overflow-y:auto;padding:16px}
 .panic-btn.wifi{background:#E8F8F0;color:#1a7a45}
 .panic-btn.maps{background:#FFF3E0;color:#E65100}
 
-/* STEPS */
-.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
-.step-num{width:26px;height:26px;border-radius:50%;background:var(--cobalt);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.step-text{font-size:14px;line-height:1.5;color:var(--text-muted)}
-
-/* INFO ROW */
-.info-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
-.info-row:last-child{border-bottom:none}
-.info-row i{width:16px;height:16px;color:var(--terra);flex-shrink:0}
-.info-label{font-size:12px;color:var(--text-muted);margin-bottom:2px}
-.info-val{font-size:14px;font-weight:500}
-
 /* POI CARDS */
 .poi-card{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:14px;border:1px solid rgba(0,71,171,0.1)}
 .poi-img{width:100%;height:130px;object-fit:cover;background:var(--cobalt-light);display:flex;align-items:center;justify-content:center;font-size:48px}
@@ -88,36 +76,12 @@ main{flex:1;overflow-y:auto;padding:16px}
 .maps-btn{background:var(--terra);color:#fff;border:none;border-radius:10px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:6px}
 .maps-btn:hover{background:var(--terra-dark)}
 .maps-btn i{width:15px;height:15px}
-.poi-host-tip{background:var(--terra-light);border-left:3px solid var(--terra);border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:12px;font-style:italic;color:#7a3a2e}
-
-/* EMERGENCY */
-.emergency-card{background:var(--card);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid #FCA5A5;display:flex;align-items:center;gap:12px}
-.emergency-card.ok{border-color:rgba(0,71,171,0.15)}
-.emergency-card.warn{border-color:#FCA5A5}
-.emerg-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.emerg-icon.red{background:#FDE8E8;color:#C0392B}
-.emerg-icon.blue{background:var(--cobalt-light);color:var(--cobalt)}
-.emerg-icon.green{background:#E8F8F0;color:#1a7a45}
-.emerg-icon i{width:20px;height:20px}
-.emerg-info{flex:1}
-.emerg-name{font-size:14px;font-weight:600;margin-bottom:2px}
-.emerg-num{font-size:13px;color:var(--text-muted)}
-.call-btn{background:var(--cobalt);color:#fff;border:none;border-radius:8px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
-.call-btn.red-btn{background:#C0392B}
-
-/* FAQ */
-.faq-item{background:var(--card);border-radius:12px;margin-bottom:10px;border:1px solid rgba(0,71,171,0.1);overflow:hidden}
-.faq-q{padding:14px 16px;font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.faq-q i{width:16px;height:16px;color:var(--terra);transition:transform 0.2s;flex-shrink:0}
-.faq-a{padding:0 16px;font-size:13px;color:var(--text-muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s}
-.faq-item.open .faq-a{max-height:300px;padding-bottom:14px}
-.faq-item.open .faq-q i{transform:rotate(180deg)}
 
 /* TOAST */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--cobalt);color:#fff;padding:8px 20px;border-radius:30px;font-size:13px;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none}
 .toast.show{opacity:1}
 
-.sec-heading{font-size:13px;font-weight:600;color:var(--cobalt);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.sec-heading{font-size:13px;font-weight:600;color:var(--cobalt);letter-spacing:1px;text-transform:uppercase;margin:20px 0 12px;display:flex;align-items:center;gap:6px}
 .sec-heading::after{content:"";flex:1;height:1px;background:rgba(0,71,171,0.15)}
 
 .tag{display:inline-block;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;margin-right:4px;margin-top:4px}
@@ -143,10 +107,10 @@ main{flex:1;overflow-y:auto;padding:16px}
     <i data-lucide="book-open"></i><span data-i="nav_manual">Manual</span>
   </button>
   <button class="nav-btn" onclick="showSection('guia',this)">
-    <i data-lucide="map-pin"></i><span data-i="nav_guide">Guía</span>
+    <i data-lucide="map-pin"></i><span data-i="nav_guide">Guía Local</span>
   </button>
   <button class="nav-btn" onclick="showSection('emergencias',this)">
-    <i data-lucide="phone-call"></i><span data-i="nav_emergency">Emergencias</span>
+    <i data-lucide="phone-call"></i><span data-i="nav_emergency">Ayuda</span>
   </button>
   <button class="nav-btn" onclick="showSection('faq',this)">
     <i data-lucide="help-circle"></i><span data-i="nav_faq">FAQ</span>
@@ -170,15 +134,15 @@ main{flex:1;overflow-y:auto;padding:16px}
     </button>
     <button class="panic-btn maps" onclick="openMaps('Benito Juárez 61, Coyoacán, CDMX')">
       <i data-lucide="navigation"></i>
-      <span data-i="btn_how">Cómo llegar</span>
+      <span data-i="btn_how">Volver a Casa</span>
     </button>
     <button class="panic-btn emergency" onclick="showSection('emergencias',document.querySelectorAll('.nav-btn')[3])">
       <i data-lucide="alert-triangle"></i>
       <span data-i="btn_emergency">Emergencias</span>
     </button>
-    <button class="panic-btn green" onclick="showSection('faq',document.querySelectorAll('.nav-btn')[4])">
-      <i data-lucide="message-circle"></i>
-      <span data-i="btn_faq">FAQ</span>
+    <button class="panic-btn green" onclick="showSection('guia',document.querySelectorAll('.nav-btn')[2])">
+      <i data-lucide="map"></i>
+      <span data-i="nav_guide">Explorar</span>
     </button>
   </div>
 
@@ -186,23 +150,11 @@ main{flex:1;overflow-y:auto;padding:16px}
     <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Wi-Fi Principal</span></div>
     <div class="info-row">
       <i data-lucide="signal"></i>
-      <div><div class="info-label" data-i="wifi_network">Red</div><div class="info-val">IZZI-ACAE</div></div>
+      <div><div class="info-label">Red Principal</div><div class="info-val">IZZI-ACAE</div></div>
     </div>
     <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')">
       <span>D4AB820FACAE</span>
       <button class="wifi-copy" data-i="copy_btn">Copiar</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><i data-lucide="calendar-check"></i><span>Check-in / Check-out</span></div>
-    <div class="info-row">
-      <i data-lucide="log-in"></i>
-      <div><div class="info-label" data-i="checkin_label">Check-in</div><div class="info-val" data-i="checkin_time">1:00 PM en adelante</div></div>
-    </div>
-    <div class="info-row">
-      <i data-lucide="log-out"></i>
-      <div><div class="info-label" data-i="checkout_label">Check-out</div><div class="info-val" data-i="checkout_time">Antes de las 1:00 PM</div></div>
     </div>
   </div>
 </div>
@@ -210,191 +162,140 @@ main{flex:1;overflow-y:auto;padding:16px}
 <div class="section" id="manual">
   <div class="card">
     <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Conexión Wi-Fi</span></div>
-    <div class="info-row">
-      <i data-lucide="radio"></i>
-      <div><div class="info-label">Red Principal (IZZI)</div><div class="info-val">IZZI-ACAE</div></div>
-    </div>
-    <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')">
-      <span>D4AB820FACAE</span>
-      <button class="wifi-copy" data-i="copy_btn">Copiar</button>
-    </div>
+    <div class="info-row"><i data-lucide="radio"></i><div><div class="info-label">Red Principal (IZZI)</div><div class="info-val">IZZI-ACAE</div></div></div>
+    <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')"><span>D4AB820FACAE</span><button class="wifi-copy">Copiar</button></div>
     <div style="height:14px"></div>
-    <div class="info-row">
-      <i data-lucide="radio"></i>
-      <div><div class="info-label">Red Secundaria (Infinitum)</div><div class="info-val">INFINITUM3565_2.4</div></div>
-    </div>
-    <div class="wifi-code" onclick="copyWifi('meySt7Mb9g')">
-      <span>meySt7Mb9g</span>
-      <button class="wifi-copy" data-i="copy_btn">Copiar</button>
-    </div>
+    <div class="info-row"><i data-lucide="radio"></i><div><div class="info-label">Red Secundaria (Infinitum)</div><div class="info-val">INFINITUM3565_2.4</div></div></div>
+    <div class="wifi-code" onclick="copyWifi('meySt7Mb9g')"><span>meySt7Mb9g</span><button class="wifi-copy">Copiar</button></div>
   </div>
 
   <div class="card">
-    <div class="card-title"><i data-lucide="scroll-text"></i><span data-i="rules_title">Reglas de la Casa</span></div>
-    <div class="step"><div class="step-num">🚭</div><div class="step-text" data-i="rule_smoke">NO FUMAR dentro del departamento.</div></div>
-    <div class="step"><div class="step-num">🐾</div><div class="step-text" data-i="rule_pets">No se permiten mascotas sin autorización previa.</div></div>
-    <div class="step"><div class="step-num">🤫</div><div class="step-text" data-i="rule_noise">Respetar al vecindario, mantener volumen bajo por la noche.</div></div>
-    <div class="step"><div class="step-num">🚫</div><div class="step-text" data-i="rule_party">No hacer fiestas ni eventos sin consentimiento.</div></div>
-    <div class="step"><div class="step-num">🏠</div><div class="step-text" data-i="rule_clean">Dejar el lugar en las mismas condiciones en que se encontró.</div></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><i data-lucide="trash-2"></i><span data-i="trash_title">Basura y Limpieza</span></div>
-    <div class="info-row"><i data-lucide="recycle"></i><div><div class="info-label" data-i="trash_label">Recolección</div><div class="info-val" data-i="trash_days">Miércoles a Domingo · 8:00 AM</div></div></div>
-    <p style="font-size:12px;color:var(--text-muted);margin-top:8px" data-i="trash_note">Saca los botes a la entrada si requieres recolección.</p>
-    <div style="height:10px; border-bottom:1px solid var(--border); margin-bottom:10px"></div>
-    <div class="info-row"><i data-lucide="sparkles"></i><div><div class="info-label" data-i="clean_label">Limpieza Adicional</div><div class="info-val" data-i="clean_cost">$500 MXN (Sujeto a disponibilidad)</div></div></div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><i data-lucide="sun"></i><span>Roof Garden</span></div>
-    <div class="step"><div class="step-num">✓</div><div class="step-text" data-i="roof_info">Cuentas con acceso a un Roof Garden. Avisa a tu anfitriona para colocar el mobiliario correspondiente.</div></div>
+    <div class="card-title"><i data-lucide="calendar"></i><span>Check-in / Check-out</span></div>
+    <div class="info-row"><i data-lucide="log-in"></i><div><div class="info-label">Check-in</div><div class="info-val">1:00 PM</div></div></div>
+    <div class="info-row"><i data-lucide="log-out"></i><div><div class="info-label">Check-out</div><div class="info-val">Antes de las 1:00 PM</div></div></div>
   </div>
 </div>
 
 <div class="section" id="guia">
-  <div class="welcome-banner" style="background:var(--terra);padding:16px 18px;margin-bottom:16px">
-    <p style="font-size:13px;opacity:0.9" data-i="guide_intro">Una selección curada por Nelly y Marcelo. Lugares que conocen y aman.</p>
-  </div>
-
+  
+  <div class="sec-heading">Transporte y Movilidad</div>
   <div class="poi-card">
-    <div class="poi-img" style="background:#E8EEFA;font-size:60px;text-align:center;line-height:130px">🎨</div>
     <div class="poi-body">
-      <div class="poi-name" data-i="poi1_name">Museo Frida Kahlo (Casa Azul)</div>
-      <span class="tag azul" data-i="poi_museum">Museo</span>
-      <span class="tag terra" data-i="poi_iconic">Icónico</span>
-      <div class="poi-host-tip" data-i="poi1_tip">💬 "Compra tu entrada en línea con días de anticipación. Los fines de semana se agotan rapidísimo."</div>
-      <div class="poi-desc" data-i="poi1_desc">La casa donde nació y vivió Frida Kahlo, convertida en museo. Pintada de azul cobalto, alberga sus obras, ropa y estudio íntimo.</div>
-      <div class="poi-meta">
-        <span><i data-lucide="clock"></i><span data-i="poi1_hours">Mar–Dom 10–17:30h.</span></span>
+      <div class="poi-name">Red de Transporte CDMX</div>
+      <div class="poi-desc">Estaciones cercanas: Metro Viveros y Metro Coyoacán.</div>
+      <div style="display:flex; gap:8px; margin-top:10px;">
+        <button class="maps-btn" onclick="window.open('https://ecobici.cdmx.gob.mx/')"><i data-lucide="bike"></i>EcoBici</button>
+        <button class="maps-btn" onclick="window.open('https://metro.cdmx.gob.mx/storage/app/media/lared/mi_mapa_metro_18032021_1.pdf')"><i data-lucide="map"></i>Mapa Red</button>
       </div>
-      <button class="maps-btn" onclick="openMaps('Museo Frida Kahlo, Coyoacan, CDMX')">
-        <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
-      </button>
     </div>
   </div>
 
+  <div class="sec-heading">Cultura y Paseos</div>
+  <div id="guia-cultura"></div>
+
+  <div class="sec-heading">Comida y Café</div>
+  <div id="guia-comida"></div>
+
+  <div class="sec-heading">Vida Nocturna</div>
+  <div id="guia-nocturna"></div>
+
+  <div class="sec-heading">Servicios Cercanos</div>
+  <div id="guia-servicios"></div>
+
+  <div class="sec-heading">Grandes Eventos</div>
+  <div id="guia-eventos"></div>
+  
   <div class="poi-card">
-    <div class="poi-img" style="background:#FFF3E0;font-size:60px;text-align:center;line-height:130px">🍳</div>
     <div class="poi-body">
-      <div class="poi-name" data-i="poi2_name">Tía Berta — Chilaquiles Legendarios</div>
-      <span class="tag terra" data-i="poi_food">Comida</span>
-      <span class="tag azul" data-i="poi_local">Local</span>
-      <div class="poi-host-tip" data-i="poi2_tip">💬 "El secreto de Marcelo: llega antes de las 9 AM. Pide los chilaquiles verdes con pollo."</div>
-      <div class="poi-desc" data-i="poi2_desc">Un clásico de Coyoacán. Desayunos caseros en un ambiente auténtico. Los chilaquiles son referencia obligada.</div>
-      <div class="poi-meta">
-        <span><i data-lucide="clock"></i><span data-i="poi2_hours">Lun–Sáb 8–13h</span></span>
-      </div>
-      <button class="maps-btn" onclick="openMaps('Restaurante Tía Berta, Coyoacan, CDMX')">
-        <i data-lucide="navigation"></i><span data-i="how_to_get">Cómo llegar</span>
-      </button>
+      <div class="poi-name">Turibus CDMX</div>
+      <div class="poi-desc">Descubre la ciudad con el recorrido oficial. Hay paradas cerca del centro de Coyoacán.</div>
+      <button class="maps-btn" onclick="window.open('https://www.turibus.com.mx/cdmx')"><i data-lucide="bus"></i>Web Oficial</button>
     </div>
   </div>
+
 </div>
 
 <div class="section" id="emergencias">
   <div class="card" style="background:#FDE8E8;border-color:#FCA5A5">
-    <div class="card-title" style="color:#C0392B"><i data-lucide="alert-triangle" style="color:#C0392B"></i><span data-i="emerg_main">Emergencia General</span></div>
-    <p style="font-size:28px;font-weight:700;color:#C0392B;text-align:center;margin:10px 0">911</p>
-    <p style="font-size:12px;color:#7a3a2e;text-align:center" data-i="emerg_911">Policía · Bomberos · Ambulancia</p>
+    <div class="card-title" style="color:#C0392B"><i data-lucide="alert-triangle"></i><span>911 - Emergencia</span></div>
   </div>
-
-  <div class="sec-heading" data-i="emerg_host">Anfitriones</div>
   <div class="emergency-card ok">
     <div class="emerg-icon blue"><i data-lucide="user"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Nelly</div><div class="emerg-num">55 6116 1944</div></div>
+    <div class="emerg-info"><div class="emerg-name">Nelly (Anfitriona)</div><div class="emerg-num">55 6116 1944</div></div>
     <button class="call-btn" onclick="callNumber('5561161944')">Llamar</button>
   </div>
-
-  <div class="sec-heading" data-i="emerg_pharma">Farmacias 24h</div>
-  <div class="emergency-card ok">
-    <div class="emerg-icon green"><i data-lucide="pill"></i></div>
-    <div class="emerg-info"><div class="emerg-name">Farmacias del Ahorro</div><div class="emerg-num">M.Á. de Quevedo 687 · 3 min caminando</div></div>
-    <button class="call-btn" onclick="openMaps('Farmacia del Ahorro Coyoacan')">Mapa</button>
-  </div>
 </div>
 
-<div class="section" id="faq">
-  <div id="faq-list"></div>
-</div>
-
+<div class="section" id="faq"><div id="faq-list"></div></div>
 </main>
 
 <div class="toast" id="toast">✓ Copiado</div>
 
 <script>
+const lugares = {
+  cultura: [
+    {n:"Museo Frida Kahlo", d:"La famosa 'Casa Azul'. Se requiere boleto en línea con días de anticipación.", q:"Museo Frida Kahlo Coyoacan", i:"🎨"},
+    {n:"Museo León Trotsky", d:"A pasos de la casa. Un sitio histórico fascinante sobre el asilo político.", q:"Museo Leon Trotsky Coyoacan", i:"📜"},
+    {n:"Casa del Indio Fernández", d:"Arquitectura de piedra volcánica impresionante. Joya oculta de Santa Catarina.", q:"Museo Emilio Indio Fernandez Coyoacan", i:"🎬"},
+    {n:"Iglesia de la Conchita", d:"Frente a la plaza más romántica de Coyoacán.", q:"Iglesia Inmaculada Concepcion Coyoacan", i:"⛪"},
+    {n:"Plaza Hidalgo", d:"El corazón social de Coyoacán, ideal para ver la vida pasar.", q:"Plaza Hidalgo Coyoacan", i:"⛲"},
+    {n:"Cineteca Nacional", d:"Santuario del cine. Recomendado por nosotros para una tarde cultural.", q:"Cineteca Nacional Mexico", i:"📽️"}
+  ],
+  comida: [
+    {n:"Los Danzantes", d:"Desayunos oaxaqueños inolvidables frente al Jardín Centenario.", q:"Los Danzantes Coyoacan", i:"🍳"},
+    {n:"Café Negro", d:"Café de especialidad y barra de trabajo moderna. Muy cerca.", q:"Cafe Negro Coyoacan", i:"☕"},
+    {n:"Mercado de Coyoacán", d:"Tostadas legendarias y comida de barrio auténtica.", q:"Mercado de Coyoacán", i:"🌮"},
+    {n:"Boicot Café", d:"Mood relajado, arcade y desayunos todo el día.", q:"Boicot Cafe Coyoacan", i:"☕"},
+    {n:"PINK Restaurante", d:"Propuesta moderna y estética cuidada para comer sin prisas.", q:"PINK Restaurante Coyoacan", i:"🍽️"}
+  ],
+  nocturna: [
+    {n:"Porfirio's Coyoacán", d:"Comida mexicana elevada y mixología de autor.", q:"Porfirio's Coyoacan", i:"🍸"},
+    {n:"La No. 20 Cantina", d:"Ambiente festivo contemporáneo y música en Oasis Coyoacán.", q:"La No. 20 Oasis Coyoacan", i:"🎷"},
+    {n:"Barra La Xico", d:"Ambiente relajado para una noche de tragos y amigos.", q:"Barra La Xico Coyoacan", i:"🍻"}
+  ],
+  servicios: [
+    {n:"Oxxo Centenario", d:"Tienda 24h a la vuelta de la esquina.", q:"Oxxo Centenario Coyoacan", i:"🏪"},
+    {n:"7-Eleven Av. México", d:"Otra opción de conveniencia muy cercana.", q:"7-Eleven Av. Mexico Coyoacan", i:"🏪"},
+    {n:"Gasolinera BP Av. México", d:"La estación de servicio más cercana a casa.", q:"Gasolinera BP Av. Mexico Coyoacan", i:"⛽"},
+    {n:"Farmacia Similares", d:"Opciones accesibles en el centro de Coyoacán.", q:"Farmacia Similares Coyoacan Centro", i:"💊"},
+    {n:"Farmacias del Ahorro", d:"Farmacia 24 horas y consultorio.", q:"Farmacia del Ahorro Coyoacan", i:"💊"}
+  ],
+  eventos: [
+    {n:"Estadio Azteca (Banorte)", d:"El Coloso de Santa Úrsula. A 15-20 min en auto.", q:"Estadio Azteca Mexico", i:"⚽"},
+    {n:"Estadio Olímpico CU", d:"Cerca de Ciudad Universitaria, patrimonio de la humanidad.", q:"Estadio Olimpico Universitario", i:"🏟️"},
+    {n:"Estadio Ciudad de los Deportes", d:"Anteriormente Estadio Azul. Ubicado en la Col. Nochebuena.", q:"Estadio Ciudad de los Deportes", i:"🏟️"},
+    {n:"Autódromo Hermanos Rdz", d:"Sede de la F1 y grandes conciertos (Foro Sol).", q:"Autodromo Hermanos Rodriguez", i:"🏎️"},
+    {n:"Palacio de los Deportes", d:"Recinto icónico para conciertos masivos.", q:"Palacio de los Deportes CDMX", i:"🎤"}
+  ]
+};
+
 const T = {
-  es:{
-    nav_welcome:"Inicio",nav_manual:"Manual",nav_guide:"Guía",nav_emergency:"Emergencias",nav_faq:"FAQ",
+  es: {
+    nav_welcome:"Inicio", nav_manual:"Manual", nav_guide:"Guía Local", nav_emergency:"Ayuda", nav_faq:"FAQ",
     welcome_title:"¡Bienvenido a La Casa de mi Abuelo!",
-    welcome_sub:"Nelly y Marcelo están felices de recibirte. Aquí encontrarás todo lo que necesitas para tu estancia.",
-    quick_access:"Acceso rápido",btn_wifi:"Wi-Fi",btn_how:"Regresar a Casa",btn_emergency:"Emergencias",btn_faq:"FAQ",
-    wifi_title:"Wi-Fi Principal",wifi_network:"Red",copy_btn:"Copiar",
-    checkin_label:"Check-in",checkin_time:"1:00 PM en adelante",checkout_label:"Check-out",checkout_time:"Antes de las 1:00 PM",
-    rules_title:"Reglas de la Casa",
-    rule_smoke:"NO FUMAR dentro del departamento.",
-    rule_pets:"No se permiten mascotas sin autorización previa.",
-    rule_noise:"Respetar al vecindario, mantener volumen bajo por la noche.",
-    rule_party:"No hacer fiestas ni eventos sin consentimiento.",
-    rule_clean:"Dejar el lugar en las mismas condiciones en que se encontró.",
-    trash_title:"Basura y Limpieza",trash_label:"Recolección",trash_days:"Miércoles a Domingo · 8:00 AM",
-    trash_note:"Saca los botes a la entrada si requieres recolección.",
-    clean_label:"Limpieza Adicional",clean_cost:"$500 MXN",
-    guide_intro:"Una selección curada por Nelly y Marcelo. Lugares que conocen y aman.",
-    how_to_get:"Cómo llegar",
-    emerg_main:"Emergencia General",emerg_911:"Policía · Bomberos · Ambulancia",
-    emerg_host:"Anfitriones",emerg_pharma:"Farmacias 24h",
-    faq:[
-      {q:"¿Cómo funciona el calentador?",a:"Se recomienda encenderlo 10 min antes de bañarse. El agua caliente tarda 2-3 min en llegar una vez abierta la llave."},
-      {q:"¿Puedo usar el Roof Garden?",a:"Sí, el departamento tiene acceso. Solo avisa a Nelly para que se coloque el mobiliario."},
-      {q:"¿Qué incluye el inventario?",a:"El departamento está totalmente equipado: refrigerador, estufa, microondas, cafetera, utensilios de cocina completos para 3 personas, blancos y artículos de higiene personal."},
-      {q:"¿Hay estacionamiento?",a:"No contamos con estacionamiento propio, pero hay opciones públicas seguras en las calles aledañas."},
-    ]
-  },
-  en:{
-    nav_welcome:"Home",nav_manual:"Manual",nav_guide:"Guide",nav_emergency:"Emergency",nav_faq:"FAQ",
-    welcome_title:"Welcome to La Casa de mi Abuelo!",
-    welcome_sub:"Nelly and Marcelo are happy to have you. Here is everything you need.",
-    quick_access:"Quick Access",btn_wifi:"Wi-Fi",btn_how:"Back to Home",btn_emergency:"Emergency",btn_faq:"FAQ",
-    wifi_title:"Main Wi-Fi",wifi_network:"Network",copy_btn:"Copy",
-    checkin_label:"Check-in",checkin_time:"1:00 PM onwards",checkout_label:"Check-out",checkout_time:"Before 1:00 PM",
-    rules_title:"House Rules",
-    rule_smoke:"NO SMOKING inside the apartment.",
-    rule_pets:"No pets allowed without prior authorization.",
-    rule_noise:"Respect the neighborhood, keep volume low at night.",
-    rule_party:"No parties or events allowed.",
-    rule_clean:"Leave the place in the same condition as found.",
-    trash_title:"Trash & Cleaning",trash_label:"Collection",trash_days:"Wed to Sun · 8:00 AM",
-    trash_note:"Put the bins at the entrance if collection is required.",
-    clean_label:"Extra Cleaning",clean_cost:"$500 MXN",
-    guide_intro:"A selection curated by Nelly and Marcelo.",
-    how_to_get:"Get Directions",
-    emerg_main:"General Emergency",emerg_911:"Police · Fire · Ambulance",
-    emerg_host:"Hosts",emerg_pharma:"24h Pharmacies",
-    faq:[
-      {q:"How does the water heater work?",a:"Turn it on 10 min before showering. Hot water takes 2-3 min to arrive after opening the tap."},
-      {q:"Can I use the Roof Garden?",a:"Yes, you have access. Please notify Nelly to set up the outdoor furniture."},
-      {q:"What is included in the inventory?",a:"Fully equipped: fridge, stove, microwave, coffee maker, full kitchen utensils for 3, linens, and personal hygiene items."},
-    ]
+    welcome_sub:"Nelly y Marcelo están felices de recibirte. Tu estancia en Coyoacán empieza aquí.",
+    quick_access:"Acceso rápido", btn_wifi:"Wi-Fi", btn_how:"Volver a Casa", btn_emergency:"Ayuda",
+    wifi_title:"Internet"
   }
 };
 
 let lang = 'es';
 
-function applyLang(){
-  const d = T[lang];
-  document.querySelectorAll('[data-i]').forEach(el=>{
-    const k = el.getAttribute('data-i');
-    if(d[k]) el.textContent = d[k];
-  });
-  document.getElementById('langBtn').textContent = lang==='es'?'EN':'ES';
-  buildFAQ();
-  if(typeof lucide!=='undefined') lucide.createIcons();
-}
-
-function toggleLang(){
-  lang = lang==='es'?'en':'es';
-  applyLang();
+function buildGuia(){
+  for(const cat in lugares){
+    const container = document.getElementById(`guia-${cat}`);
+    if(!container) continue;
+    container.innerHTML = lugares[cat].map(l => `
+      <div class="poi-card">
+        <div class="poi-img">${l.i}</div>
+        <div class="poi-body">
+          <div class="poi-name">${l.n}</div>
+          <div class="poi-desc">${l.d}</div>
+          <button class="maps-btn" onclick="openMaps('${l.q}')"><i data-lucide="navigation"></i>Cómo llegar</button>
+        </div>
+      </div>
+    `).join('');
+  }
 }
 
 function showSection(id, btn){
@@ -407,7 +308,6 @@ function showSection(id, btn){
 function copyWifi(pw){
   navigator.clipboard.writeText(pw).catch(()=>{});
   const t=document.getElementById('toast');
-  t.textContent = lang==='es'?'✓ Copiado':'✓ Copied';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2000);
 }
@@ -416,29 +316,11 @@ function openMaps(q){
   window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q), '_blank');
 }
 
-function callNumber(n){
-  window.open('tel:+52'+n,'_self');
-}
-
-function buildFAQ(){
-  const d=T[lang];
-  const list=document.getElementById('faq-list');
-  list.innerHTML='';
-  d.faq.forEach((item,i)=>{
-    const el=document.createElement('div');
-    el.className='faq-item';
-    el.innerHTML=`<div class="faq-q" onclick="toggleFaq(this)">${item.q}<i data-lucide="chevron-down"></i></div><div class="faq-a">${item.a}</div>`;
-    list.appendChild(el);
-  });
-  if(typeof lucide!=='undefined') lucide.createIcons();
-}
-
-function toggleFaq(el){
-  el.parentElement.classList.toggle('open');
-}
+function callNumber(n){ window.open('tel:+52'+n,'_self'); }
 
 window.addEventListener('load',()=>{
-  if(typeof lucide!=='undefined'){lucide.createIcons();buildFAQ();}
+  if(typeof lucide!=='undefined') lucide.createIcons();
+  buildGuia();
 });
 </script>
 </body>
