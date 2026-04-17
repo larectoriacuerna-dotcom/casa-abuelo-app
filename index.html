@@ -129,4 +129,381 @@ main{flex:1;overflow-y:auto;padding:16px}
     <i data-lucide="book-open"></i><span data-i="nav_manual">Manual</span>
   </button>
   <button class="nav-btn" onclick="showSection('guia',this)">
-    <i data-lucide="map-pin"></i><span data-i="nav_
+    <i data-lucide="map-pin"></i><span data-i="nav_guide">Guía Local</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('emergencias',this)">
+    <i data-lucide="phone-call"></i><span data-i="nav_emergency">Ayuda</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('faq',this)">
+    <i data-lucide="help-circle"></i><span data-i="nav_faq">FAQ</span>
+  </button>
+</nav>
+
+<main>
+
+<div class="section active" id="bienvenida">
+  <div class="welcome-banner">
+    <h2 data-i="welcome_title">¡Bienvenido a La Casa de mi Abuelo!</h2>
+    <p data-i="welcome_sub">Nelly y Marcelo están felices de recibirte. Todo lo que necesitas para tu estancia en Coyoacán está aquí.</p>
+    <div class="address-badge" onclick="openMaps('Benito Juárez 61, Del Carmen, Coyoacán, CDMX')">📍 Benito Juárez 61, Coyoacán</div>
+  </div>
+
+  <div class="sec-heading" data-i="quick_access" style="margin-top:0;">Acceso rápido</div>
+  <div class="panic-grid">
+    <button class="panic-btn host" onclick="showSection('manual',document.querySelectorAll('.nav-btn')[1])">
+      <i data-lucide="wifi"></i>
+      <span data-i="btn_wifi">Wi-Fi</span>
+    </button>
+    <button class="panic-btn maps" onclick="openMaps('Benito Juárez 61, Coyoacán, CDMX')">
+      <i data-lucide="navigation"></i>
+      <span data-i="btn_how">Volver a Casa</span>
+    </button>
+    <button class="panic-btn emergency" onclick="showSection('emergencias',document.querySelectorAll('.nav-btn')[3])">
+      <i data-lucide="alert-triangle"></i>
+      <span data-i="btn_emergency">Emergencias</span>
+    </button>
+    <button class="panic-btn green" onclick="showSection('guia',document.querySelectorAll('.nav-btn')[2])">
+      <i data-lucide="map"></i>
+      <span data-i="btn_explore">Explorar</span>
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Wi-Fi Principal</span></div>
+    <div class="info-row">
+      <i data-lucide="signal"></i>
+      <div><div class="info-label">Red Principal / Main Network</div><div class="info-val">IZZI-ACAE</div></div>
+    </div>
+    <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')">
+      <span>D4AB820FACAE</span>
+      <button class="wifi-copy" data-i="copy_btn">Copiar</button>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="manual">
+  
+  <div class="card">
+    <div class="card-title"><i data-lucide="calendar"></i><span data-i="check_title">Check-in / Check-out</span></div>
+    <div class="info-row"><i data-lucide="log-in"></i><div><div class="info-label">Check-in</div><div class="info-val">14:00 hrs (2:00 PM)</div></div></div>
+    <div class="info-row"><i data-lucide="log-out"></i><div><div class="info-label">Check-out</div><div class="info-val">12:00 PM (Mediodía)</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i data-lucide="wifi"></i><span data-i="wifi_title">Conexión Wi-Fi</span></div>
+    <div class="info-row"><i data-lucide="radio"></i><div><div class="info-label">Red Principal (IZZI)</div><div class="info-val">IZZI-ACAE</div></div></div>
+    <div class="wifi-code" onclick="copyWifi('D4AB820FACAE')"><span>D4AB820FACAE</span><button class="wifi-copy" data-i="copy_btn">Copiar</button></div>
+    <div style="height:14px"></div>
+    <div class="info-row"><i data-lucide="radio"></i><div><div class="info-label">Red Secundaria (Infinitum)</div><div class="info-val">INFINITUM3565_2.4</div></div></div>
+    <div class="wifi-code" onclick="copyWifi('meySt7Mb9g')"><span>meySt7Mb9g</span><button class="wifi-copy" data-i="copy_btn">Copiar</button></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i data-lucide="scroll-text"></i><span data-i="rules_title">Reglas de la Casa</span></div>
+    <div class="step"><div class="step-num">🚭</div><div class="step-text" data-i="rule_smoke">NO FUMAR dentro del departamento.</div></div>
+    <div class="step"><div class="step-num">🐾</div><div class="step-text" data-i="rule_pets">No se permiten mascotas sin autorización previa.</div></div>
+    <div class="step"><div class="step-num">🤫</div><div class="step-text" data-i="rule_noise">Respetar al vecindario, mantener volumen bajo por la noche.</div></div>
+    <div class="step"><div class="step-num">🚫</div><div class="step-text" data-i="rule_party">No hacer fiestas ni eventos sin consentimiento.</div></div>
+    <div class="step"><div class="step-num">🏠</div><div class="step-text" data-i="rule_clean">Dejar el lugar en las mismas condiciones en que se encontró.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i data-lucide="trash-2"></i><span data-i="trash_title">Basura y Limpieza</span></div>
+    <div class="info-row"><i data-lucide="recycle"></i><div><div class="info-label" data-i="trash_label">Recolección</div><div class="info-val" data-i="trash_days">Miércoles a Domingo · 8:00 AM</div></div></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:4px" data-i="trash_note">Saca los botes a la entrada si requieres recolección.</p>
+    <div style="height:10px; border-bottom:1px solid var(--border); margin-bottom:10px"></div>
+    <div class="info-row"><i data-lucide="sparkles"></i><div><div class="info-label" data-i="clean_label">Limpieza Adicional</div><div class="info-val" data-i="clean_cost">$500 MXN (Sujeto a disponibilidad)</div></div></div>
+  </div>
+
+  <div class="sec-heading" data-i="inv_title">Inventario del Departamento</div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span data-i="inv_elec">Electrónicos y Electrodomésticos</span><i data-lucide="chevron-down"></i></div>
+    <div class="faq-a">
+      <ul class="inv-list">
+        <li>Refrigerador + charola Coca Cola</li>
+        <li>Estufa con campana</li>
+        <li>Microondas y Cafetera</li>
+        <li>Tostadora y Waflera</li>
+        <li>Lámpara de buró</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span data-i="inv_muebles">Muebles y Blancos</span><i data-lucide="chevron-down"></i></div>
+    <div class="faq-a">
+      <ul class="inv-list">
+        <li>Cama matrimonial y Cama individual</li>
+        <li>Sofá, 3 Sillas altas y 3 Bancos</li>
+        <li>2 Mesitas de noche y 2 Baúles de madera</li>
+        <li>Armario/Clóset (8 ganchos, 6 cajones, 1 cobertor)</li>
+        <li>2 Juegos de sábanas colocadas</li>
+        <li>3 Toallas grandes, 2 de manos y 4 faciales</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span data-i="inv_cocina">Utensilios de Cocina</span><i data-lucide="chevron-down"></i></div>
+    <div class="faq-a">
+      <ul class="inv-list">
+        <li>Vajilla completa para 3 personas + 6 platitos + 4 manteles</li>
+        <li>Cubiertos para 4 personas + Tenedor de servicio</li>
+        <li>4 Vasos cristal + 3 de Coca Cola, 2 Tarros, 2 Copas</li>
+        <li>Azucarera, cremera, 4 tequileros, refractario cristal</li>
+        <li>1 Sartén chica, 1 Sartén grande, 1 Olla con tapa, 1 Posillo</li>
+        <li>Espátulas, destapadores, topers de metal/plástico, cuchillos, coladores</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span data-i="inv_limpieza">Limpieza e Higiene</span><i data-lucide="chevron-down"></i></div>
+    <div class="faq-a">
+      <ul class="inv-list">
+        <li>Escoba, recogedor, trapeador y balde</li>
+        <li>3 Botes de basura, detergente, ambientador eléctrico</li>
+        <li>Champú, jabón corporal, esponja, pasta dental, enjuague</li>
+        <li>Canasta con fruta/dulces de cortesía, escurridor de trastes</li>
+        <li>Jabón trastes, esponja, trapito cocina</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" id="guia">
+  <div class="welcome-banner" style="background:var(--terra);padding:16px 18px;margin-bottom:16px">
+    <p style="font-size:13px;opacity:0.9" data-i="guide_intro">Una selección curada por Nelly y Marcelo para vivir el barrio al máximo.</p>
+  </div>
+  
+  <div id="guia-content"></div>
+</div>
+
+<div class="section" id="emergencias">
+  <div class="card" style="background:#FDE8E8;border-color:#FCA5A5">
+    <div class="card-title" style="color:#C0392B"><i data-lucide="alert-triangle"></i><span data-i="emerg_main">911 - Emergencia General</span></div>
+    <p style="font-size:12px;color:#7a3a2e;" data-i="emerg_911">Policía · Bomberos · Ambulancia</p>
+  </div>
+
+  <div class="sec-heading" data-i="emerg_host">Anfitriones</div>
+  <div class="emergency-card ok">
+    <div class="emerg-icon blue"><i data-lucide="user"></i></div>
+    <div class="emerg-info"><div class="emerg-name">Nelly</div><div class="emerg-num">55 6116 1944</div></div>
+    <button class="call-btn" onclick="callNumber('5561161944')" data-i="btn_call">Llamar</button>
+  </div>
+</div>
+
+<div class="section" id="faq"><div id="faq-list"></div></div>
+
+</main>
+
+<div class="toast" id="toast">✓ Copiado</div>
+
+<script>
+// BASE DE DATOS GUIA LOCAL
+const guiaData = {
+  museos: { icon: "🏛️", title: "Museos", items: [
+    {n:"Museo Frida Kahlo", d:"La famosa 'Casa Azul'. Se requiere comprar boleto en línea con días de anticipación.", q:"Museo Frida Kahlo Coyoacan", i:"🎨"},
+    {n:"Museo León Trotsky", d:"A pasos de la casa. Un sitio histórico fascinante sobre el asilo político en México.", q:"Museo Leon Trotsky Coyoacan", i:"📜"},
+    {n:"Casa del Indio Fernández", d:"Arquitectura de piedra volcánica impresionante. Una joya oculta del cine de oro.", q:"Casa de Emilio El Indio Fernandez", i:"🎬"},
+    {n:"Culturas Populares", d:"Exposiciones siempre coloridas sobre el arte folclórico y tradiciones de México.", q:"Museo Nacional de Culturas Populares", i:"🏺"}
+  ]},
+  iglesias: { icon: "⛪", title: "Iglesias Históricas", items: [
+    {n:"Parroquia San Juan Bautista", d:"Templo icónico del siglo XVI en el corazón del centro de Coyoacán.", q:"Parroquia San Juan Bautista Coyoacan", i:"⛪"},
+    {n:"Iglesia de la Conchita", d:"Frente a una de las plazas más románticas y tranquilas del barrio.", q:"Iglesia Inmaculada Concepcion Coyoacan", i:"⛪"},
+    {n:"Capilla de Santa Catarina", d:"Pequeña, pintoresca y rodeada de callejones coloniales hermosos.", q:"Capilla de Santa Catarina Coyoacan", i:"⛪"}
+  ]},
+  restaurantes: { icon: "🍽️", title: "Restaurantes", items: [
+    {n:"Tía Berta", d:"Desayuno: Chilaquiles legendarios de tradición familiar. Imperdible ir temprano.", q:"Restaurante Tia Berta", i:"🍳"},
+    {n:"Mercado de Coyoacán", d:"Económico: Desayuna o come delicioso y a muy buen precio. Hay increíbles antojitos, carnitas, barbacoa y tostadas.", q:"Mercado de Coyoacán", i:"🍲"},
+    {n:"Los Danzantes", d:"Comida: Alta cocina mexicana frente al Jardín Centenario. Ideal para la tarde.", q:"Los Danzantes Coyoacan", i:"🌮"},
+    {n:"Corazón de Maguey", d:"Cena: Excelente mezcalería y gastronomía nocturna con gran ambiente.", q:"Corazon de Maguey Coyoacan", i:"🍸"}
+  ]},
+  amenidades: { icon: "🌳", title: "Amenidades y Paseos", items: [
+    {n:"Mercado de Coyoacán", d:"Artesanías, colores y el verdadero ambiente de barrio. Perfecto para souvenirs.", q:"Mercado de Coyoacán", i:"🛍️"},
+    {n:"Plaza Hidalgo", d:"El corazón social de Coyoacán, rodeado de música, churros y vida local.", q:"Plaza Hidalgo Coyoacan", i:"⛲"}
+  ]},
+  estadios: { icon: "🏟️", title: "Estadios y Conciertos", items: [
+    {n:"Estadio Azteca", d:"El coloso de Santa Úrsula. A 15-20 min en auto.", q:"Estadio Azteca Mexico", i:"⚽"},
+    {n:"Estadio Olímpico CU", d:"Cerca de Ciudad Universitaria, patrimonio arquitectónico.", q:"Estadio Olimpico Universitario", i:"🏈"},
+    {n:"Estadio Ciudad de los Deportes", d:"Anteriormente Estadio Azul. Ubicado en la Col. Nochebuena.", q:"Estadio Ciudad de los Deportes", i:"🏟️"},
+    {n:"Autódromo Hermanos Rodríguez", d:"Sede de la F1, Foro Sol y los festivales de música más grandes.", q:"Autodromo Hermanos Rodriguez", i:"🏎️"},
+    {n:"Palacio de los Deportes", d:"Recinto icónico techado para conciertos y eventos masivos.", q:"Palacio de los Deportes CDMX", i:"🎤"}
+  ]},
+  malls: { icon: "🛍️", title: "Plazas Comerciales", items: [
+    {n:"Centro Coyoacán / Mítikah", d:"Mítikah es el mall más nuevo y espectacular de la zona, a minutos de casa.", q:"Mitikah Centro Comercial", i:"🏢"},
+    {n:"Oasis Coyoacán", d:"Hermosa plaza al aire libre con un gran lago artificial.", q:"Oasis Coyoacan", i:"🛍️"},
+    {n:"Plaza Universidad", d:"Un centro comercial clásico y muy completo con cines y restaurantes.", q:"Plaza Universidad", i:"🏬"}
+  ]},
+  farmacias: { icon: "💊", title: "Farmacias", items: [
+    {n:"Farmacia San Pablo", d:"Servicio 24 horas y entregas a domicilio.", q:"Farmacia San Pablo Coyoacan", i:"⚕️"},
+    {n:"Farmacias del Ahorro", d:"Servicio 24 horas y consultorio médico.", q:"Farmacia del Ahorro Coyoacan", i:"💊"},
+    {n:"Farmacias Similares", d:"Opciones accesibles y medicamentos genéricos.", q:"Farmacias Similares Coyoacan", i:"🩺"},
+    {n:"Farmacia Guadalajara", d:"Farmacia combinada con tienda de conveniencia.", q:"Farmacia Guadalajara Coyoacan", i:"🏪"}
+  ]},
+  tiendas: { icon: "🛒", title: "Tiendas y Supermercados", items: [
+    {n:"Sumesa Centenario", d:"El supermercado más cercano y completo para armar tu despensa.", q:"Sumesa Centenario", i:"🛒"},
+    {n:"Oxxo", d:"Tienda de conveniencia rápida y cercana.", q:"Oxxo Coyoacan", i:"🏪"},
+    {n:"7-Eleven", d:"Snacks, bebidas y básicos abierto 24 hrs.", q:"7-Eleven Coyoacan", i:"🏪"}
+  ]},
+  gasolineras: { icon: "⛽", title: "Gasolineras", items: [
+    {n:"BP Av. México", d:"Estación de servicio muy cercana a la propiedad.", q:"Gasolinera BP Av Mexico Coyoacan", i:"⛽"},
+    {n:"Pemex M. Ángel de Quevedo", d:"Gasolinera tradicional sobre la avenida principal.", q:"Gasolinera Pemex Miguel Angel de Quevedo", i:"⛽"}
+  ]},
+  transporte: { icon: "🚇", title: "Transporte y Movilidad", items: [
+    {n:"Estaciones de Metro", d:"Metro Viveros y Metro Coyoacán son las estaciones de la Línea 3 más cercanas.", q:"Metro Viveros CDMX", i:"🚇"},
+    {n:"EcoBici CDMX", d:"Sistema de bicicletas públicas. Recomendamos revisar la App oficial para estaciones.", q:"https://ecobici.cdmx.gob.mx/", i:"🚲"},
+    {n:"Turibus CDMX", d:"El autobús turístico tiene paradas en el centro de Coyoacán para recorrer la ciudad.", q:"https://www.turibus.com.mx/cdmx", i:"🚌"}
+  ]}
+};
+
+// TRADUCCIONES ESTRATÉGICAS (Inglés solo para navegación y reglas vitales)
+const T = {
+  es:{
+    nav_welcome:"Inicio", nav_manual:"Manual", nav_guide:"Guía Local", nav_emergency:"Ayuda", nav_faq:"FAQ",
+    welcome_title:"¡Bienvenido a La Casa de mi Abuelo!",
+    welcome_sub:"Nelly y Marcelo están felices de recibirte. Todo lo que necesitas para tu estancia en Coyoacán está aquí.",
+    quick_access:"Acceso rápido", btn_wifi:"Wi-Fi", btn_how:"Volver a Casa", btn_emergency:"Emergencias", btn_explore:"Explorar",
+    wifi_title:"Conexión Wi-Fi", copy_btn:"Copiar", check_title:"Check-in / Check-out",
+    rules_title:"Reglas de la Casa",
+    rule_smoke:"NO FUMAR dentro del departamento.",
+    rule_pets:"No se permiten mascotas sin autorización previa.",
+    rule_noise:"Respetar al vecindario, mantener volumen bajo por la noche.",
+    rule_party:"No hacer fiestas ni eventos sin consentimiento.",
+    rule_clean:"Dejar el lugar en las mismas condiciones en que se encontró.",
+    trash_title:"Basura y Limpieza", trash_label:"Recolección", trash_days:"Miércoles a Domingo · 8:00 AM", trash_note:"Saca los botes a la entrada si requieres recolección.",
+    clean_label:"Limpieza Adicional", clean_cost:"$500 MXN (Sujeto a disponibilidad)",
+    inv_title:"Inventario del Departamento", inv_elec:"Electrónicos y Electrodomésticos", inv_muebles:"Muebles y Blancos", inv_cocina:"Utensilios de Cocina", inv_limpieza:"Limpieza e Higiene",
+    guide_intro:"Una selección curada por Nelly y Marcelo para vivir el barrio al máximo.",
+    how_to_get:"Cómo llegar / Abrir", emerg_main:"911 - Emergencia General", emerg_911:"Policía · Bomberos · Ambulancia", emerg_host:"Anfitriones", btn_call:"Llamar",
+    faq:[
+      {q:"¿Cómo funciona el calentador de agua?", a:"Se recomienda encenderlo 10 minutos antes de bañarse. El agua caliente tarda de 2 a 3 minutos en llegar una vez abierta la llave en la regadera."},
+      {q:"¿Puedo utilizar el Roof Garden?", a:"¡Sí! El departamento cuenta con acceso al Roof Garden. Solo avísale a Nelly previamente para que se coloque el mobiliario de exterior correspondiente."},
+      {q:"¿Hay estacionamiento disponible?", a:"No contamos con estacionamiento propio, pero hay opciones seguras de paga en las calles aledañas y en Plaza Coyoacán."},
+      {q:"¿El departamento tiene lo necesario para cocinar?", a:"Totalmente. Como puedes ver en la sección de Inventario, la cocina está equipada con refrigerador, estufa, microondas, vajilla, sartenes y cubiertos para 4 personas."}
+    ]
+  },
+  en:{
+    nav_welcome:"Home", nav_manual:"Manual", nav_guide:"Local Guide", nav_emergency:"Help", nav_faq:"FAQ",
+    welcome_title:"Welcome to La Casa de mi Abuelo!",
+    welcome_sub:"Nelly and Marcelo are happy to host you. Everything you need is right here.",
+    quick_access:"Quick Access", btn_wifi:"Wi-Fi", btn_how:"Back to House", btn_emergency:"Emergency", btn_explore:"Explore",
+    wifi_title:"Wi-Fi Connection", copy_btn:"Copy", check_title:"Check-in / Check-out",
+    rules_title:"House Rules",
+    rule_smoke:"NO SMOKING inside the apartment.",
+    rule_pets:"No pets allowed without prior authorization.",
+    rule_noise:"Respect the neighborhood, keep volume low at night.",
+    rule_party:"No parties or events allowed.",
+    rule_clean:"Leave the place in the same condition as found.",
+    trash_title:"Trash & Cleaning", trash_label:"Collection", trash_days:"Wed to Sun · 8:00 AM", trash_note:"Put bins at the entrance if collection is needed.",
+    clean_label:"Extra Cleaning", clean_cost:"$500 MXN (Subject to availability)",
+    inv_title:"Apartment Inventory", inv_elec:"Electronics & Appliances", inv_muebles:"Furniture & Linens", inv_cocina:"Kitchenware", inv_limpieza:"Cleaning & Hygiene",
+    guide_intro:"A curated selection by Nelly and Marcelo to experience the neighborhood.",
+    how_to_get:"Get Directions", emerg_main:"911 - General Emergency", emerg_911:"Police · Fire · Ambulance", emerg_host:"Hosts", btn_call:"Call",
+    faq:[
+      {q:"How does the water heater work?", a:"Turn it on 10 minutes before showering. Hot water takes 2-3 minutes to arrive after opening the tap."},
+      {q:"Can I use the Roof Garden?", a:"Yes! You have access to the Roof Garden. Just let Nelly know in advance so the outdoor furniture can be set up."},
+      {q:"Is parking available?", a:"We do not have private parking, but there are safe paid parking options in nearby streets and at Plaza Coyoacán."},
+      {q:"Is the kitchen equipped for cooking?", a:"Absolutely. As you can see in the Inventory section, it is fully equipped with a fridge, stove, microwave, dishes, pans, and cutlery for 4 people."}
+    ]
+  }
+};
+
+let lang = 'es';
+
+function buildGuia(){
+  const container = document.getElementById('guia-content');
+  let html = '';
+  for(const key in guiaData){
+    const cat = guiaData[key];
+    html += `<div class="sec-heading">${cat.icon} <span data-i="cat_${key}">${cat.title}</span></div>`;
+    cat.items.forEach(l => {
+      // Si el enlace es una URL directa (como ecobici/turibus), se abre tal cual. Si no, busca en Google Maps.
+      let action = l.q.startsWith('http') ? `window.open('${l.q}', '_blank')` : `openMaps('${l.q}')`;
+      html += `
+        <div class="poi-card">
+          <div class="poi-img">${l.i}</div>
+          <div class="poi-body">
+            <div class="poi-name">${l.n}</div>
+            <div class="poi-desc">${l.d}</div>
+            <button class="maps-btn" onclick="${action}"><i data-lucide="navigation"></i><span data-i="how_to_get">${lang==='es'?'Cómo llegar / Abrir':'Get Directions'}</span></button>
+          </div>
+        </div>`;
+    });
+  }
+  container.innerHTML = html;
+}
+
+function applyLang(){
+  const d = T[lang];
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const k = el.getAttribute('data-i');
+    if(d[k]) el.textContent = d[k];
+  });
+  
+  // Traducir dinámicamente los títulos de las categorías de la guía
+  const catNames = {
+    es: {cat_museos:"Museos", cat_iglesias:"Iglesias Históricas", cat_restaurantes:"Restaurantes", cat_amenidades:"Amenidades y Paseos", cat_estadios:"Estadios y Conciertos", cat_malls:"Plazas Comerciales", cat_farmacias:"Farmacias", cat_tiendas:"Tiendas y Supermercados", cat_gasolineras:"Gasolineras", cat_transporte:"Transporte y Movilidad"},
+    en: {cat_museos:"Museums", cat_iglesias:"Historic Churches", cat_restaurantes:"Restaurants", cat_amenidades:"Parks & Amenities", cat_estadios:"Stadiums & Concerts", cat_malls:"Shopping Malls", cat_farmacias:"Pharmacies", cat_tiendas:"Stores & Supermarkets", cat_gasolineras:"Gas Stations", cat_transporte:"Transport & Mobility"}
+  };
+  document.querySelectorAll('[data-i^="cat_"]').forEach(el=>{
+    const k = el.getAttribute('data-i');
+    if(catNames[lang][k]) el.textContent = catNames[lang][k];
+  });
+
+  document.getElementById('langBtn').textContent = lang==='es'?'EN':'ES';
+  buildFAQ();
+  buildGuia(); // Reconstruir guía para actualizar botones
+  if(typeof lucide!=='undefined') lucide.createIcons();
+}
+
+function toggleLang(){
+  lang = lang==='es'?'en':'es';
+  applyLang();
+}
+
+function showSection(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+function copyWifi(pw){
+  navigator.clipboard.writeText(pw).catch(()=>{});
+  const t=document.getElementById('toast');
+  t.textContent = lang==='es'?'✓ Copiado':'✓ Copied';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+function openMaps(q){
+  window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q), '_blank');
+}
+
+function callNumber(n){ window.open('tel:+52'+n,'_self'); }
+
+function buildFAQ(){
+  const d=T[lang];
+  const list=document.getElementById('faq-list');
+  list.innerHTML='';
+  d.faq.forEach((item)=>{
+    const el=document.createElement('div');
+    el.className='faq-item';
+    el.innerHTML=`<div class="faq-q" onclick="toggleFaq(this)">${item.q}<i data-lucide="chevron-down"></i></div><div class="faq-a">${item.a}</div>`;
+    list.appendChild(el);
+  });
+}
+
+function toggleFaq(el){
+  el.parentElement.classList.toggle('open');
+}
+
+window.addEventListener('load',()=>{
+  applyLang(); // Inicializa textos y construye guía/faq
+});
+</script>
+</body>
+</html>
