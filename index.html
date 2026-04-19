@@ -77,10 +77,16 @@ main{flex:1;overflow-y:auto;padding:16px}
 .faq-q{padding:14px 16px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center; color:var(--cobalt)}
 .faq-q i{width:16px;height:16px;color:var(--terra);transition:transform 0.2s;flex-shrink:0}
 .faq-a{padding:0 16px;font-size:13px;color:var(--text-muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s}
-.faq-item.open .faq-a{max-height:500px;padding-bottom:14px}
+.faq-item.open .faq-a{max-height:800px;padding-bottom:14px}
 .faq-item.open .faq-q i{transform:rotate(180deg)}
 .inv-list {padding-left: 18px; margin-top: 5px; list-style-type: disc;}
 .inv-list li {margin-bottom: 6px;}
+
+/* GUIA TABS (Botones Interactivos) */
+.guia-tabs { display:flex; overflow-x:auto; gap:10px; padding-bottom:10px; margin-bottom:15px; scrollbar-width:none; }
+.guia-tabs::-webkit-scrollbar { display:none; }
+.guia-tab { background:var(--card); border:1px solid rgba(0,71,171,0.2); padding:8px 14px; border-radius:20px; font-size:13px; font-weight:600; color:var(--cobalt); cursor:pointer; white-space:nowrap; transition:all 0.2s; display:flex; align-items:center; gap:6px; box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.guia-tab.active { background:var(--cobalt); color:#fff; border-color:var(--cobalt); }
 
 /* POI CARDS */
 .poi-card{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:14px;border:1px solid rgba(0,71,171,0.1)}
@@ -145,7 +151,7 @@ main{flex:1;overflow-y:auto;padding:16px}
   <div class="welcome-banner">
     <h2 data-i="welcome_title">¡Bienvenido a La Casa de mi Abuelo!</h2>
     <p data-i="welcome_sub">Nelly y Marcelo están felices de recibirte. Todo lo que necesitas para tu estancia en Coyoacán está aquí.</p>
-    <div class="address-badge" onclick="openMaps('Benito Juárez 61, Del Carmen, Coyoacán, CDMX')">📍 Benito Juárez 61, Coyoacán</div>
+    <div class="address-badge" onclick="openMaps('Benito Juarez 61, del Carmen, Coyoacan, 04100')">📍 Benito Juárez 61, Coyoacán</div>
   </div>
 
   <div class="sec-heading" data-i="quick_access" style="margin-top:0;">Acceso rápido</div>
@@ -154,7 +160,7 @@ main{flex:1;overflow-y:auto;padding:16px}
       <i data-lucide="wifi"></i>
       <span data-i="btn_wifi">Wi-Fi</span>
     </button>
-    <button class="panic-btn maps" onclick="openMaps('Benito Juárez 61, Coyoacán, CDMX')">
+    <button class="panic-btn maps" onclick="openMaps('Benito Juarez 61, del Carmen, Coyoacan, 04100')">
       <i data-lucide="navigation"></i>
       <span data-i="btn_how">Volver a Casa</span>
     </button>
@@ -212,7 +218,7 @@ main{flex:1;overflow-y:auto;padding:16px}
     <div class="info-row"><i data-lucide="recycle"></i><div><div class="info-label" data-i="trash_label">Recolección</div><div class="info-val" data-i="trash_days">Miércoles a Domingo · 8:00 AM</div></div></div>
     <p style="font-size:12px;color:var(--text-muted);margin-top:4px" data-i="trash_note">Saca los botes a la entrada si requieres recolección.</p>
     <div style="height:10px; border-bottom:1px solid var(--border); margin-bottom:10px"></div>
-    <div class="info-row"><i data-lucide="sparkles"></i><div><div class="info-label" data-i="clean_label">Limpieza Adicional</div><div class="info-val" data-i="clean_cost">$500 MXN (Sujeto a disponibilidad)</div></div></div>
+    <div class="info-row"><i data-lucide="sparkles"></i><div><div class="info-label" data-i="clean_label">Limpieza Adicional</div><div class="info-val" data-i="clean_cost">$600 MXN (Sujeto a disponibilidad)</div></div></div>
   </div>
 
   <div class="sec-heading" data-i="inv_title">Inventario del Departamento</div>
@@ -278,6 +284,7 @@ main{flex:1;overflow-y:auto;padding:16px}
     <p style="font-size:13px;opacity:0.9" data-i="guide_intro">Una selección curada por Nelly y Marcelo para vivir el barrio al máximo.</p>
   </div>
   
+  <div class="guia-tabs" id="guia-tabs"></div>
   <div id="guia-content"></div>
 </div>
 
@@ -288,11 +295,19 @@ main{flex:1;overflow-y:auto;padding:16px}
   </div>
 
   <div class="sec-heading" data-i="emerg_host">Anfitriones</div>
+  
   <div class="emergency-card ok">
     <div class="emerg-icon blue"><i data-lucide="user"></i></div>
     <div class="emerg-info"><div class="emerg-name">Nelly</div><div class="emerg-num">55 6116 1944</div></div>
     <button class="call-btn" onclick="callNumber('5561161944')" data-i="btn_call">Llamar</button>
   </div>
+  
+  <div class="emergency-card ok">
+    <div class="emerg-icon blue"><i data-lucide="user"></i></div>
+    <div class="emerg-info"><div class="emerg-name">Marcelo</div><div class="emerg-num">55 3565 3818</div></div>
+    <button class="call-btn" onclick="callNumber('5535653818')" data-i="btn_call">Llamar</button>
+  </div>
+  
 </div>
 
 <div class="section" id="faq"><div id="faq-list"></div></div>
@@ -337,6 +352,10 @@ const guiaData = {
     {n:"Oasis Coyoacán", d:"Hermosa plaza al aire libre con un gran lago artificial.", q:"Oasis Coyoacan", i:"🛍️"},
     {n:"Plaza Universidad", d:"Un centro comercial clásico y muy completo con cines y restaurantes.", q:"Plaza Universidad", i:"🏬"}
   ]},
+  hospitales: { icon: "🏥", title: "Hospitales", items: [
+    {n:"Hospital HMG Coyoacán", d:"Hospital privado con urgencias 24 hrs, muy cerca de la propiedad.", q:"Hospital HMG Coyoacan", i:"🏥"},
+    {n:"Hospital General Xoco", d:"Hospital público de emergencias.", q:"Hospital General Xoco", i:"🏥"}
+  ]},
   farmacias: { icon: "💊", title: "Farmacias", items: [
     {n:"Farmacia San Pablo", d:"Servicio 24 horas y entregas a domicilio.", q:"Farmacia San Pablo Coyoacan", i:"⚕️"},
     {n:"Farmacias del Ahorro", d:"Servicio 24 horas y consultorio médico.", q:"Farmacia del Ahorro Coyoacan", i:"💊"},
@@ -359,6 +378,11 @@ const guiaData = {
   ]}
 };
 
+const catNames = {
+  es: {cat_museos:"Museos", cat_iglesias:"Iglesias Históricas", cat_restaurantes:"Restaurantes", cat_amenidades:"Amenidades y Paseos", cat_estadios:"Estadios y Conciertos", cat_malls:"Plazas Comerciales", cat_hospitales:"Hospitales", cat_farmacias:"Farmacias", cat_tiendas:"Tiendas y Supermercados", cat_gasolineras:"Gasolineras", cat_transporte:"Transporte y Movilidad"},
+  en: {cat_museos:"Museums", cat_iglesias:"Historic Churches", cat_restaurantes:"Restaurants", cat_amenidades:"Parks & Amenities", cat_estadios:"Stadiums & Concerts", cat_malls:"Shopping Malls", cat_hospitales:"Hospitals", cat_farmacias:"Pharmacies", cat_tiendas:"Stores & Supermarkets", cat_gasolineras:"Gas Stations", cat_transporte:"Transport & Mobility"}
+};
+
 // TRADUCCIONES ESTRATÉGICAS (Inglés solo para navegación y reglas vitales)
 const T = {
   es:{
@@ -374,14 +398,14 @@ const T = {
     rule_party:"No hacer fiestas ni eventos sin consentimiento.",
     rule_clean:"Dejar el lugar en las mismas condiciones en que se encontró.",
     trash_title:"Basura y Limpieza", trash_label:"Recolección", trash_days:"Miércoles a Domingo · 8:00 AM", trash_note:"Saca los botes a la entrada si requieres recolección.",
-    clean_label:"Limpieza Adicional", clean_cost:"$500 MXN (Sujeto a disponibilidad)",
+    clean_label:"Limpieza Adicional", clean_cost:"$600 MXN (Sujeto a disponibilidad)",
     inv_title:"Inventario del Departamento", inv_elec:"Electrónicos y Electrodomésticos", inv_muebles:"Muebles y Blancos", inv_cocina:"Utensilios de Cocina", inv_limpieza:"Limpieza e Higiene",
     guide_intro:"Una selección curada por Nelly y Marcelo para vivir el barrio al máximo.",
     how_to_get:"Cómo llegar / Abrir", emerg_main:"911 - Emergencia General", emerg_911:"Policía · Bomberos · Ambulancia", emerg_host:"Anfitriones", btn_call:"Llamar",
     faq:[
-      {q:"¿Cómo funciona el calentador de agua?", a:"Se recomienda encenderlo 10 minutos antes de bañarse. El agua caliente tarda de 2 a 3 minutos en llegar una vez abierta la llave en la regadera."},
+      {q:"¿Cómo es el ingreso y salida del departamento?", a:"Para el ingreso debes oprimir #3333# en el panel numérico. Y para la salida solo hay que presionar el botón rojo."},
       {q:"¿Puedo utilizar el Roof Garden?", a:"¡Sí! El departamento cuenta con acceso al Roof Garden. Solo avísale a Nelly previamente para que se coloque el mobiliario de exterior correspondiente."},
-      {q:"¿Hay estacionamiento disponible?", a:"No contamos con estacionamiento propio, pero hay opciones seguras de paga en las calles aledañas y en Plaza Coyoacán."},
+      {q:"¿Hay estacionamiento disponible?", a:"No contamos con estacionamiento privado, pero la calle es muy tranquila y segura, con muy poco tránsito. Tu auto se puede quedar estacionado frente al departamento.<br><br>También hay una pensión a 3 minutos en auto y 10 minutos caminando.<br>Esta es la dirección:<br><strong>Estacionamiento Corsa</strong><br>Pino 5, Santa Catarina, Coyoacán, 04010 Ciudad de México, CDMX"},
       {q:"¿El departamento tiene lo necesario para cocinar?", a:"Totalmente. Como puedes ver en la sección de Inventario, la cocina está equipada con refrigerador, estufa, microondas, vajilla, sartenes y cubiertos para 4 personas."}
     ]
   },
@@ -398,42 +422,55 @@ const T = {
     rule_party:"No parties or events allowed.",
     rule_clean:"Leave the place in the same condition as found.",
     trash_title:"Trash & Cleaning", trash_label:"Collection", trash_days:"Wed to Sun · 8:00 AM", trash_note:"Put bins at the entrance if collection is needed.",
-    clean_label:"Extra Cleaning", clean_cost:"$500 MXN (Subject to availability)",
+    clean_label:"Extra Cleaning", clean_cost:"$600 MXN (Subject to availability)",
     inv_title:"Apartment Inventory", inv_elec:"Electronics & Appliances", inv_muebles:"Furniture & Linens", inv_cocina:"Kitchenware", inv_limpieza:"Cleaning & Hygiene",
     guide_intro:"A curated selection by Nelly and Marcelo to experience the neighborhood.",
     how_to_get:"Get Directions", emerg_main:"911 - General Emergency", emerg_911:"Police · Fire · Ambulance", emerg_host:"Hosts", btn_call:"Call",
     faq:[
-      {q:"How does the water heater work?", a:"Turn it on 10 minutes before showering. Hot water takes 2-3 minutes to arrive after opening the tap."},
+      {q:"How does check-in and check-out work?", a:"For entry, you must press #3333# on the keypad. For departure, you only need to press the red button."},
       {q:"Can I use the Roof Garden?", a:"Yes! You have access to the Roof Garden. Just let Nelly know in advance so the outdoor furniture can be set up."},
-      {q:"Is parking available?", a:"We do not have private parking, but there are safe paid parking options in nearby streets and at Plaza Coyoacán."},
+      {q:"Is parking available?", a:"We do not have private parking, but the street is very quiet and safe, with very little traffic. Your car can remain parked in front of the apartment.<br><br>There is also a paid parking lot 3 minutes away by car and 10 minutes walking.<br>Here is the address:<br><strong>Estacionamiento Corsa</strong><br>Pino 5, Santa Catarina, Coyoacán, 04010 Ciudad de México, CDMX"},
       {q:"Is the kitchen equipped for cooking?", a:"Absolutely. As you can see in the Inventory section, it is fully equipped with a fridge, stove, microwave, dishes, pans, and cutlery for 4 people."}
     ]
   }
 };
 
 let lang = 'es';
+let currentGuiaCat = 'museos';
 
-function buildGuia(){
-  const container = document.getElementById('guia-content');
+function buildGuiaTabs(){
+  const container = document.getElementById('guia-tabs');
   let html = '';
   for(const key in guiaData){
     const cat = guiaData[key];
-    html += `<div class="sec-heading">${cat.icon} <span data-i="cat_${key}">${cat.title}</span></div>`;
-    cat.items.forEach(l => {
-      // Si el enlace es una URL directa (como ecobici/turibus), se abre tal cual. Si no, busca en Google Maps.
-      let action = l.q.startsWith('http') ? `window.open('${l.q}', '_blank')` : `openMaps('${l.q}')`;
-      html += `
-        <div class="poi-card">
-          <div class="poi-img">${l.i}</div>
-          <div class="poi-body">
-            <div class="poi-name">${l.n}</div>
-            <div class="poi-desc">${l.d}</div>
-            <button class="maps-btn" onclick="${action}"><i data-lucide="navigation"></i><span data-i="how_to_get">${lang==='es'?'Cómo llegar / Abrir':'Get Directions'}</span></button>
-          </div>
-        </div>`;
-    });
+    const activeCls = key === currentGuiaCat ? 'active' : '';
+    const title = catNames[lang]['cat_'+key] || cat.title;
+    html += `<button class="guia-tab ${activeCls}" onclick="showGuiaCategory('${key}')">${cat.icon} <span>${title}</span></button>`;
   }
   container.innerHTML = html;
+}
+
+function showGuiaCategory(key){
+  currentGuiaCat = key;
+  buildGuiaTabs();
+  const container = document.getElementById('guia-content');
+  const cat = guiaData[key];
+  const title = catNames[lang]['cat_'+key] || cat.title;
+  let html = `<div class="sec-heading">${cat.icon} <span>${title}</span></div>`;
+  cat.items.forEach(l => {
+    let action = l.q.startsWith('http') ? `window.open('${l.q}', '_blank')` : `openMaps('${l.q}')`;
+    html += `
+      <div class="poi-card">
+        <div class="poi-img">${l.i}</div>
+        <div class="poi-body">
+          <div class="poi-name">${l.n}</div>
+          <div class="poi-desc">${l.d}</div>
+          <button class="maps-btn" onclick="${action}"><i data-lucide="navigation"></i><span data-i="how_to_get">${lang==='es'?'Cómo llegar / Abrir':'Get Directions'}</span></button>
+        </div>
+      </div>`;
+  });
+  container.innerHTML = html;
+  if(typeof lucide!=='undefined') lucide.createIcons();
 }
 
 function applyLang(){
@@ -443,19 +480,9 @@ function applyLang(){
     if(d[k]) el.textContent = d[k];
   });
   
-  // Traducir dinámicamente los títulos de las categorías de la guía
-  const catNames = {
-    es: {cat_museos:"Museos", cat_iglesias:"Iglesias Históricas", cat_restaurantes:"Restaurantes", cat_amenidades:"Amenidades y Paseos", cat_estadios:"Estadios y Conciertos", cat_malls:"Plazas Comerciales", cat_farmacias:"Farmacias", cat_tiendas:"Tiendas y Supermercados", cat_gasolineras:"Gasolineras", cat_transporte:"Transporte y Movilidad"},
-    en: {cat_museos:"Museums", cat_iglesias:"Historic Churches", cat_restaurantes:"Restaurants", cat_amenidades:"Parks & Amenities", cat_estadios:"Stadiums & Concerts", cat_malls:"Shopping Malls", cat_farmacias:"Pharmacies", cat_tiendas:"Stores & Supermarkets", cat_gasolineras:"Gas Stations", cat_transporte:"Transport & Mobility"}
-  };
-  document.querySelectorAll('[data-i^="cat_"]').forEach(el=>{
-    const k = el.getAttribute('data-i');
-    if(catNames[lang][k]) el.textContent = catNames[lang][k];
-  });
-
   document.getElementById('langBtn').textContent = lang==='es'?'EN':'ES';
   buildFAQ();
-  buildGuia(); // Reconstruir guía para actualizar botones
+  showGuiaCategory(currentGuiaCat); 
   if(typeof lucide!=='undefined') lucide.createIcons();
 }
 
@@ -502,7 +529,7 @@ function toggleFaq(el){
 }
 
 window.addEventListener('load',()=>{
-  applyLang(); // Inicializa textos y construye guía/faq
+  applyLang(); 
 });
 </script>
 </body>
